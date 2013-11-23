@@ -1,6 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\DrawSprite\WriteString.cs">
+    <Files>
+      <File FileName="PSMGameJamWinter2013\AppMain.cs" Line="13" Column="37" />
+      <File FileName="c:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\DrawSprite\WriteString.cs" Line="117" Column="41" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

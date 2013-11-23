@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{714302B1-AE76-47DB-9657-F20C92DB6EA5}</ProjectGuid>
+    <ProjectTypeGuids>{69878862-DA7D-4DC6-B0A1-50D8FAB4242F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ApmFrameWork</RootNamespace>
+    <AssemblyName>ApmFrameWork</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Sce.PlayStation.Core" />
+    <Reference Include="I18N" />
+    <Reference Include="I18N.CJK" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Sce.PlayStation.HighLevel.GameEngine2D" />
+    <Reference Include="Sce.PlayStation.HighLevel.UI" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Audio\Audio.cs" />
+    <Compile Include="DrawSprite\DrawPicture.cs" />
+    <Compile Include="DrawSprite\MoveSprite.cs" />
+    <Compile Include="DrawSprite\SpriteForTouch.cs" />
+    <Compile Include="DrawSprite\SpriteForTouchDictionary.cs" />
+    <Compile Include="DrawSprite\SpriteForTouches.cs" />
+    <Compile Include="DrawSprite\SpriteForTouchList.cs" />
+    <Compile Include="DrawSprite\WriteString.cs" />
+    <Compile Include="Hardware\InputDevice.cs" />
+    <Compile Include="Message\YesNoMessage.cs" />
+    <Compile Include="NowLoading\NowLoading.cs" />
+    <Compile Include="SaveAndLoadXmlSample\LoadFromXmlSample.cs" />
+    <Compile Include="SaveAndLoadXmlSample\SaveToXmlSample.cs" />
+    <Compile Include="Scene\FlameWorkScene\GameScene.cs" />
+    <Compile Include="Scene\Sample\AudioSample.cs" />
+    <Compile Include="Scene\Sample\DrawSpriteSample.cs" />
+    <Compile Include="Scene\Sample\DrawSpriteSheetSample.cs" />
+    <Compile Include="Scene\Sample\DrawSpritesSample.cs" />
+    <Compile Include="Scene\Sample\MainMenuSample.cs" />
+    <Compile Include="Scene\Sample\NovelSceneSample.cs" />
+    <Compile Include="Scene\Sample\SaveAndLoadSample.cs" />
+    <Compile Include="Scene\Sample\TouchSample.cs" />
+    <Compile Include="Scene\Sample\SingletonSample\SingletonBaseSample.cs" />
+    <Compile Include="Scene\Sample\SingletonSample\SingletonDrawSpriteInitializeSample.cs" />
+    <Compile Include="Scene\Sample\SingletonSample\SingletonDrawSpriteUpdateSample.cs" />
+    <Compile Include="Scene\Sample\SingletonSample\SingletonSample.cs" />
+    <Compile Include="Scene\Sample\SingletonSample\SingletonSceneSample.cs" />
+    <Compile Include="SpritSheet\Sample\DrawPlayerSheetSample.cs" />
+    <Compile Include="SpritSheet\Sample\DrawWalkerSheetSample.cs" />
+    <Compile Include="SpritSheet\Sample\PlayerSheetSample.cs" />
+    <Compile Include="SpritSheet\Sample\WalkerSample.cs" />
+    <Compile Include="Voice\FlameWorkVoice\Voice.cs" />
+    <Compile Include="Voice\Sample\SelectVoiceSample.cs" />
+    <Compile Include="Voice\Sample\VoiceSample.cs" />
+    <Compile Include="Voice\Sample\VoiceSample2.cs" />
+    <Compile Include="APMGameFramework.cs" />
+    <Compile Include="AppMain.cs" />
+    <Compile Include="Const.cs" />
+    <Compile Include="Log\GameLog.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\VitaGrid.ai" />
+    <None Include="resources\VitaGrid.xcf" />
+    <None Include="resources\walk.tps" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\backBtn.png" />
+    <Content Include="resources\ball_blue_down.png" />
+    <Content Include="resources\ball_blue_left.png" />
+    <Content Include="resources\ball_blue_right.png" />
+    <Content Include="resources\ball_blue_top.png" />
+    <Content Include="resources\ball_red_down.png" />
+    <Content Include="resources\ball_red_left.png" />
+    <Content Include="resources\ball_red_right.png" />
+    <Content Include="resources\ball_red_top.png" />
+    <Content Include="resources\black.png" />
+    <Content Include="resources\blue.png" />
+    <Content Include="resources\choseBox.png" />
+    <Content Include="resources\cursorDL.png" />
+    <Content Include="resources\cursorDown.png" />
+    <Content Include="resources\cursorDR.png" />
+    <Content Include="resources\cursorLeft.png" />
+    <Content Include="resources\cursorRight.png" />
+    <Content Include="resources\cursorUL.png" />
+    <Content Include="resources\cursorUp.png" />
+    <Content Include="resources\cursorUR.png" />
+    <Content Include="resources\DebugFont.png" />
+    <Content Include="resources\green.png" />
+    <Content Include="resources\lightBlue.png" />
+    <Content Include="resources\lightGreen.png" />
+    <Content Include="resources\menuBox.png" />
+    <Content Include="resources\menuBoxSq.png" />
+    <Content Include="resources\noBtn.png" />
+    <Content Include="resources\none.png" />
+    <Content Include="resources\orange.png" />
+    <Content Include="resources\pink.png" />
+    <Content Include="resources\Player.png" />
+    <Content Include="resources\purple.png" />
+    <Content Include="resources\red.png" />
+    <Content Include="resources\textBox.png" />
+    <Content Include="resources\VitaGrid.png" />
+    <Content Include="resources\walk.png" />
+    <Content Include="resources\white.png" />
+    <Content Include="resources\yellow.png" />
+    <Content Include="resources\yesBtn.png" />
+    <Content Include="sound\Bullet.wav" />
+    <Content Include="sound\Explosion.wav" />
+    <Content Include="sound\GameBgm.mp3" />
+    <Content Include="sound\song1.mp3" />
+    <Content Include="sound\song2.mp3" />
+    <Content Include="sound\sound1.wav" />
+    <Content Include="sound\sound2.wav" />
+    <Content Include="sound\SYS_SE_01.wav" />
+    <Content Include="FONT\IPA_Font_License_Agreement_v1.0.txt" />
+    <Content Include="FONT\Readme_IPAfont00303.txt" />
+    <Content Include="resources\walk.xml" />
+    <Content Include="FONT\ipag.ttf" />
+    <Content Include="FONT\ipagp.ttf" />
+    <Content Include="FONT\ipam.ttf" />
+    <Content Include="FONT\ipamp.ttf" />
+    <Content Include="saveSample\saveData.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ShaderProgram Include="shaders\Font.fcg" />
+    <ShaderProgram Include="shaders\Font.vcg" />
+    <ShaderProgram Include="shaders\Simple.fcg" />
+    <ShaderProgram Include="shaders\Simple.vcg" />
+    <ShaderProgram Include="shaders\SimpleSprite.fcg" />
+    <ShaderProgram Include="shaders\SimpleSprite.vcg" />
+    <ShaderProgram Include="shaders\Texture.fcg" />
+    <ShaderProgram Include="shaders\Texture.vcg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PsmMetadata Include="app.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Log\" />
+  </ItemGroup>
+</Project>

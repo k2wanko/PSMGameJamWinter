@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSMGameJamWinter2013", "PSMGameJamWinter2013\PSMGameJamWinter2013.csproj", "{944A0047-A51B-4088-BCF9-48A1924AD42A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApmFrameWork", "ApmFrameWork\ApmFrameWork\ApmFrameWork.csproj", "{714302B1-AE76-47DB-9657-F20C92DB6EA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{714302B1-AE76-47DB-9657-F20C92DB6EA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714302B1-AE76-47DB-9657-F20C92DB6EA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714302B1-AE76-47DB-9657-F20C92DB6EA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714302B1-AE76-47DB-9657-F20C92DB6EA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{944A0047-A51B-4088-BCF9-48A1924AD42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{944A0047-A51B-4088-BCF9-48A1924AD42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{944A0047-A51B-4088-BCF9-48A1924AD42A}.Release|Any CPU.ActiveCfg = Release|Any CPU

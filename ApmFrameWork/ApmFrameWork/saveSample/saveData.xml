@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--LINQ to XML Sample http://keicode.com/-->
+<SaveData>
+  <ButtonData>
+		<Button>not saved</Button>
+  </ButtonData>
+</SaveData>
