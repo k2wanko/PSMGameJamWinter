@@ -17,28 +17,30 @@ namespace PSMGameJamWinter2013
 	public class MainScene : GameScene
 	{
 		private SpriteForTouch message = new SpriteForTouch();
+		
+		protected long frame = 0;
 		public MainScene ()
 		{
+			
 		}
 		public override Scene Initialize()
 		{
 			scene.Camera.SetViewFromViewport();
 			GameLog.DebugLog.Log("start");
-			
-			message.DrawSprite("DrawSpriteSample",
-										120f,
-										120f,
-										30,
-										new ImageColor(255,255,255,255),
-										scene,
-			                             true);
+
 			return scene;
 		}
 		
-		public override void Update(){
+		protected long UpdateFrame()
+		{
+			return frame++ ;
+		}
 		
-		if(InputDevice.CircleButton()){
-				ChangeScene( () => {return new AudioSample();} );
+		public override void Update(){
+			UpdateFrame();
+		
+			if(InputDevice.CircleButton()){
+				GameLog.DebugLog.Log ("AAA" + frame);
 			}
 			
 		}//Update()

@@ -16,3 +16,12 @@ C:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFra
 C:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\Texture.cgx
 C:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\ApmFrameWork.dll
 C:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\ApmFrameWork.pdb
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\bin\Debug\ApmFrameWork.dll
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\bin\Debug\ApmFrameWork.pdb
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\Font.cgx
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\Simple.cgx
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\SimpleSprite.cgx
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\Texture.cgx
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\ApmFrameWork.dll
+C:\Users\kazu\PSM\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\obj\Debug\ApmFrameWork.pdb
