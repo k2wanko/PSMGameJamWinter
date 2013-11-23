@@ -120,5 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppMain.cs" />
+    <Compile Include="Dachshund.cs" />
+    <Compile Include="MainScene.cs" />
   </ItemGroup>
 </Project>
