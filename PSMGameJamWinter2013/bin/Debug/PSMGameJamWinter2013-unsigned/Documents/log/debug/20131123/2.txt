@@ -1,0 +1,2 @@
+ApmFw.APMGameFramework / Initialize (M) :   End -> Initialize : MainMenuSample
+ApmFw.MainMenuSample / firstUpdate (M)Start : 

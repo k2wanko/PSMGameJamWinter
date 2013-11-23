@@ -1,13 +1,20 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\DrawSprite\WriteString.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PSMGameJamWinter2013\PSMGJW2013Manager.cs">
     <Files>
-      <File FileName="PSMGameJamWinter2013\AppMain.cs" Line="13" Column="37" />
+      <File FileName="PSMGameJamWinter2013\AppMain.cs" Line="41" Column="55" />
       <File FileName="c:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\DrawSprite\WriteString.cs" Line="117" Column="41" />
+      <File FileName="PSMGameJamWinter2013\BaseSprite.cs" Line="1" Column="1" />
+      <File FileName="PSMGameJamWinter2013\PSMGJW2013Manager.cs" Line="30" Column="1" />
+      <File FileName="ApmFrameWork\ApmFrameWork\Scene\Sample\MainMenuSample.cs" Line="363" Column="2" />
+      <File FileName="ApmFrameWork\ApmFrameWork\APMGameFramework.cs" Line="28" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\Scene\Sample\MainMenuSample.cs" line="48" />
+      <Breakpoint file="C:\Users\Toshi\Dropbox\hotmail\Dropbox\PSVITA\PSMJW_2013\PSMGameJamWinter\ApmFrameWork\ApmFrameWork\APMGameFramework.cs" line="82" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

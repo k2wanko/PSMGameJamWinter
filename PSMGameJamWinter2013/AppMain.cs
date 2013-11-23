@@ -18,19 +18,33 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 using Sce.PlayStation.Core.Imaging;
 
-namespace ApmFw{
+using ApmFw;
+
+namespace PSMGameJamWinter2013{
 
 	public class AppMain{
 
+//		public static void Main (string[] args){
+//			
+////			Director.Initialize();
+////			Scene scene = new Scene();
+////			scene.Camera.SetViewFromViewport();
+////			Director.Instance.RunWithScene(scene);
+//			
+////			APMGameFramework game = new PSMGJW2013Manager();
+//			
+//		}
+	//Main
 		public static void Main (string[] args){
 			
-			Director.Initialize();
-			Scene scene = new Scene();
-			scene.Camera.SetViewFromViewport();
-			Director.Instance.RunWithScene(scene);
-			
+			//using( 
+			      APMGameFramework game = new PSMGJW2013Manager();
+				//)
+		{
+			game.Run(args);
 		}
-	//Main
+			
+		}//Main
 	}//class AppMain
 }//namespace ApmFw
 
