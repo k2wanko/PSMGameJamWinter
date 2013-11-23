@@ -123,5 +123,6 @@
     <Compile Include="MainScene.cs" />
     <Compile Include="BaseSprite.cs" />
     <Compile Include="PSMGJW2013Manager.cs" />
+    <Compile Include="TestScene1.cs" />
   </ItemGroup>
 </Project>
