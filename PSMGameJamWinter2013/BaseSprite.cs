@@ -33,6 +33,7 @@ namespace PSMGameJamWinter2013
 		public void setTexture(string path)
 		{
 			this.TextureInfo = new TextureInfo( new Texture2D("/Application/resources/" + path, false) );
+			Quad.S = this.TextureInfo.TextureSizef;
 		}
 		
 		public void setTextureArray(string[] array)

@@ -19,6 +19,7 @@ namespace PSMGameJamWinter2013
 		private SpriteForTouch message = new SpriteForTouch();
 		
 		public PlayerEntity player;
+		System.Timers.Timer timer = new System.Timers.Timer();
 		
 		protected long frame = 0;
 		public MainScene ()
@@ -32,7 +33,7 @@ namespace PSMGameJamWinter2013
 			
 			BaseSprite background = new BaseSprite();
 			background.setTexture("background.png");
-			background.setX(100);
+			//background.Quad.S = new Vector2(128,128);
 			
 			
 			player = new PlayerEntity();
@@ -59,14 +60,15 @@ namespace PSMGameJamWinter2013
 		
 		public override void Update(){
 			UpdateFrame();
-		
-			if(InputDevice.CircleButtonRepeat()){
+			
+			player.Update(frame);
+			/*if(InputDevice.CircleButtonRepeat()){
 				//GameLog.DebugLog.Log ("AAA" + frame);
 				//player.Position = new Vector2(1000F, 10F);
 				player.setTexture(1);
 			} else {
 				player.setTexture(0);
-			}
+			}*/
 			
 		}//Update()
 		public override void Terminate()
