@@ -37,6 +37,14 @@ namespace PSMGameJamWinter2013
 			return scene;
 		}
 		
+		public void start()
+		{
+		}
+		
+		public void nextScene()
+		{
+		}
+		
 		protected long UpdateFrame()
 		{
 			return frame++ ;

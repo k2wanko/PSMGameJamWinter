@@ -6,6 +6,7 @@ using Sce.PlayStation.Core.Environment;
 using Sce.PlayStation.Core.Input;
 
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
+using System.IO;
 
 namespace PSMGameJamWinter2013
 {
