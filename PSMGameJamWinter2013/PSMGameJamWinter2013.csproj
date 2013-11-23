@@ -116,6 +116,7 @@
     <Content Include="FONT\ipamp.ttf" />
     <Content Include="resources\maou.png" />
     <Content Include="resources\maou2.png" />
+    <Content Include="resources\background.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />
@@ -128,5 +129,6 @@
     <Compile Include="TestScene1.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="PlayerEntity.cs" />
+    <Compile Include="TitleScene.cs" />
   </ItemGroup>
 </Project>

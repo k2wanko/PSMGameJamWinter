@@ -7,6 +7,7 @@ using Sce.PlayStation.Core.Input;
 
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 using System.IO;
+using ApmFw;
 
 namespace PSMGameJamWinter2013
 {
@@ -14,7 +15,7 @@ namespace PSMGameJamWinter2013
 	{
 		
 		Texture2D texture2d = null;
-		TextureInfo[] textureInfoArray;
+		TextureInfo[] textureInfoArray = new TextureInfo[10];
 		int texture_num = 0;
 		
 		public BaseSprite ()
@@ -26,7 +27,12 @@ namespace PSMGameJamWinter2013
 		{
 			this.texture_num = i;
 			this.TextureInfo = textureInfoArray[texture_num];
-			Quad.S = this.TextureInfo.TextureSizef;
+			//sQuad.S = this.TextureInfo.TextureSizef;
+		}
+		
+		public void setTexture(string path)
+		{
+			this.TextureInfo = new TextureInfo( new Texture2D("/Application/resources/" + path, false) );
 		}
 		
 		public void setTextureArray(string[] array)
@@ -34,13 +40,19 @@ namespace PSMGameJamWinter2013
 			int i;
 			for(i = 0; i < array.Length; i++)
 			{	
+				GameLog.DebugLog.Log("" + i);
 				string path = array[i];
+				
 				textureInfoArray[i] = new TextureInfo( new Texture2D("/Application/resources/" + path, false) );
 			}
 			
 			this.TextureInfo = textureInfoArray[texture_num];
-			Quad.S = this.TextureInfo.TextureSizef;
 			
+		}
+		
+		public void setS(int i)
+		{
+				
 		}
 		
 		public float setX(float x)

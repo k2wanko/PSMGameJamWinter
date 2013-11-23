@@ -30,8 +30,14 @@ namespace PSMGameJamWinter2013
 			scene.Camera.SetViewFromViewport();
 			GameLog.DebugLog.Log("start");
 			
+			BaseSprite background = new BaseSprite();
+			background.setTexture("background.png");
+			background.setX(100);
+			
+			
 			player = new PlayerEntity();
-			//player.Position = scene.Camera.CalcBounds().Center;
+			
+			scene.AddChild(background);
 			scene.AddChild(player);
 
 			return scene;
@@ -39,6 +45,7 @@ namespace PSMGameJamWinter2013
 		
 		public void start()
 		{
+			
 		}
 		
 		public void nextScene()
@@ -53,10 +60,12 @@ namespace PSMGameJamWinter2013
 		public override void Update(){
 			UpdateFrame();
 		
-			if(InputDevice.CircleButton()){
+			if(InputDevice.CircleButtonRepeat()){
 				//GameLog.DebugLog.Log ("AAA" + frame);
 				//player.Position = new Vector2(1000F, 10F);
 				player.setTexture(1);
+			} else {
+				player.setTexture(0);
 			}
 			
 		}//Update()
