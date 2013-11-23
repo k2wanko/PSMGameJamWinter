@@ -1,0 +1,9 @@
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\bin\Debug\ApmFrameWork.dll
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\bin\Debug\ApmFrameWork.pdb
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\Font.cgx
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\Simple.cgx
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\SimpleSprite.cgx
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\obj\Debug\shaders\shaders\Texture.cgx
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\obj\Debug\ApmFrameWork.dll
+C:\Users\kazu\PSM\PSMGameJamWinter2013\ApmFrameWork\ApmFrameWork\obj\Debug\ApmFrameWork.pdb

@@ -1,0 +1,42 @@
+ApmFw.APMGameFramework / Initialize (M) :   End -> Initialize : MainMenuSample
+ApmFw.MainMenuSample / firstUpdate (M)Start : 
+ApmFw.MainMenuSample / firstUpdate (M)  End : case 0
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Initialize : DrawSpriteSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Initialize : DrawSpriteSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Terminate : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Terminate : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Initialize : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Initialize : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Terminate : DrawSpriteSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Terminate : DrawSpriteSample
+ApmFw.MainMenuSample / firstUpdate (M)Start : 
+ApmFw.MainMenuSample / firstUpdate (M)  End : case 3
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Initialize : TouchSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Initialize : TouchSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Terminate : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Terminate : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Initialize : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Initialize : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Terminate : TouchSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Terminate : TouchSample
+ApmFw.MainMenuSample / firstUpdate (M)Start : 
+ApmFw.MainMenuSample / firstUpdate (M)  End : case 3
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Initialize : TouchSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Initialize : TouchSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Terminate : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Terminate : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Initialize : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Initialize : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Terminate : TouchSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Terminate : TouchSample
+ApmFw.MainMenuSample / firstUpdate (M)Start : 
+ApmFw.MainMenuSample / firstUpdate (M)  End : case 6
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Initialize : NovelSceneSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Initialize : NovelSceneSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Terminate : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Terminate : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Initialize : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Initialize : MainMenuSample
+ApmFw.APMGameFramework / ChangeNextScene (M) : Start -> Terminate : NovelSceneSample
+ApmFw.APMGameFramework / ChangeNextScene (M) :   End -> Terminate : NovelSceneSample
+ApmFw.MainMenuSample / firstUpdate (M)Start : 

@@ -24,12 +24,7 @@ namespace ApmFw{
 
 		public static void Main (string[] args){
 			
-			//using( 
-			      APMGameFramework game = new APMGameFramework();
-				//)
-		{
-			game.Run(args);
-		}
+			
 			
 		}//Main
 	}//class AppMain
