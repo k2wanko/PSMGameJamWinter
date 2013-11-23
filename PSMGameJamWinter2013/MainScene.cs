@@ -18,6 +18,8 @@ namespace PSMGameJamWinter2013
 	{
 		private SpriteForTouch message = new SpriteForTouch();
 		
+		public PlayerEntity player;
+		
 		protected long frame = 0;
 		public MainScene ()
 		{
@@ -27,6 +29,10 @@ namespace PSMGameJamWinter2013
 		{
 			scene.Camera.SetViewFromViewport();
 			GameLog.DebugLog.Log("start");
+			
+			player = new PlayerEntity();
+			//player.Position = scene.Camera.CalcBounds().Center;
+			scene.AddChild(player);
 
 			return scene;
 		}
@@ -40,7 +46,9 @@ namespace PSMGameJamWinter2013
 			UpdateFrame();
 		
 			if(InputDevice.CircleButton()){
-				GameLog.DebugLog.Log ("AAA" + frame);
+				//GameLog.DebugLog.Log ("AAA" + frame);
+				//player.Position = new Vector2(1000F, 10F);
+				player.setTexture(1);
 			}
 			
 		}//Update()
