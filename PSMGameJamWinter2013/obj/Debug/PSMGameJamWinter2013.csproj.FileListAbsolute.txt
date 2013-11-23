@@ -1,6 +1,5 @@
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\app.info
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\app.exe
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\ApmFrameWork.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\System.Json.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\System.Xml.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\System.Runtime.Serialization.dll
@@ -8,11 +7,7 @@ C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJam
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\System.ServiceModel.Web.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\System.ServiceModel.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\System.Xml.Linq.dll
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\I18N.CJK.dll
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\I18N.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\app.exe.mdb
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\ApmFrameWork.dll.mdb
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\resources\backBtn.png
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\resources\ball_blue_down.png
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\resources\ball_blue_left.png
@@ -66,7 +61,6 @@ C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJam
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-unsigned\Application\FONT\ipamp.ttf
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\app.info
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\app.exe
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\ApmFrameWork.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\System.Json.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\System.Xml.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\System.Runtime.Serialization.dll
@@ -74,11 +68,7 @@ C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJam
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\System.ServiceModel.Web.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\System.ServiceModel.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\System.Xml.Linq.dll
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\I18N.CJK.dll
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\I18N.dll
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\app.exe.mdb
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\ApmFrameWork.dll.mdb
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\resources\backBtn.png
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\resources\ball_blue_down.png
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013-signed\Application\resources\ball_blue_left.png
@@ -133,6 +123,5 @@ C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJam
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\bin\Debug\PSMGameJamWinter2013.psdp
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\obj\Debug\convertedpdb\app.exe.mdb
-C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\obj\Debug\convertedpdb\ApmFrameWork.dll.mdb
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\obj\Debug\app.exe
 C:\Users\kazu\PSM\PSMGameJamWinter2013\PSMGameJamWinter2013\obj\Debug\app.pdb

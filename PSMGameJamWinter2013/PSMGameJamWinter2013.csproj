@@ -121,5 +121,6 @@
   <ItemGroup>
     <Compile Include="AppMain.cs" />
     <Compile Include="MainScene.cs" />
+    <Compile Include="BaseSprite.cs" />
   </ItemGroup>
 </Project>

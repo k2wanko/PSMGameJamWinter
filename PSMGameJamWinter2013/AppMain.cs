@@ -24,9 +24,13 @@ namespace ApmFw{
 
 		public static void Main (string[] args){
 			
+			Director.Initialize();
+			Scene scene = new Scene();
+			scene.Camera.SetViewFromViewport();
+			Director.Instance.RunWithScene(scene);
 			
-			
-		}//Main
+		}
+	//Main
 	}//class AppMain
 }//namespace ApmFw
 
