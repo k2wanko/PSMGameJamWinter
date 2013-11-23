@@ -41,7 +41,7 @@ namespace PSMGameJamWinter2013
 			int i;
 			for(i = 0; i < array.Length; i++)
 			{	
-				GameLog.DebugLog.Log("" + i);
+				//GameLog.DebugLog.Log("" + i);
 				string path = array[i];
 				
 				textureInfoArray[i] = new TextureInfo( new Texture2D("/Application/resources/" + path, false) );

@@ -131,5 +131,9 @@
     <Compile Include="PlayerEntity.cs" />
     <Compile Include="TitleScene.cs" />
     <Compile Include="EnemyEntity.cs" />
+    <Compile Include="FireEnemyEntity.cs" />
+    <Compile Include="WoodEnemyEntity.cs" />
+    <Compile Include="GrandEnemyEntity.cs" />
+    <Compile Include="WaterEnemyEntity.cs" />
   </ItemGroup>
 </Project>
