@@ -14,13 +14,23 @@ namespace PSMGameJamWinter2013
 	public class BaseSprite : SpriteUV
 	{
 		
-		Texture2D texture2d = null;
-		TextureInfo[] textureInfoArray = new TextureInfo[10];
+		public Texture2D texture2d = null;
+		public TextureInfo[] textureInfoArray = new TextureInfo[10];
 		int texture_num = 0;
 		
 		public BaseSprite ()
 		{
 			
+		}
+		
+		public BaseSprite (Texture2D t2) : base()
+		{
+			//base(t2);
+		}
+		
+		public BaseSprite (BaseSprite bs)
+		{
+			this.TextureInfo = bs.TextureInfo;
 		}
 		
 		public void setTexture(int i)
@@ -33,6 +43,7 @@ namespace PSMGameJamWinter2013
 		public void setTexture(string path)
 		{
 			this.TextureInfo = new TextureInfo( new Texture2D("/Application/resources/" + path, false) );
+			Quad.S = this.TextureInfo.TextureSizef;
 		}
 		
 		public void setTextureArray(string[] array)
@@ -40,7 +51,7 @@ namespace PSMGameJamWinter2013
 			int i;
 			for(i = 0; i < array.Length; i++)
 			{	
-				GameLog.DebugLog.Log("" + i);
+				//GameLog.DebugLog.Log("" + i);
 				string path = array[i];
 				
 				textureInfoArray[i] = new TextureInfo( new Texture2D("/Application/resources/" + path, false) );
