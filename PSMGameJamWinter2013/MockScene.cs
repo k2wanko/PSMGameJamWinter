@@ -349,9 +349,9 @@ namespace PSMGameJamWinter2013
 				return;
 			}
 			//敵の生成
-			int randomDraw =(int)(rand.Next() % 1000);
+			int randomDraw =(int)(rand.Next(0,1000));
 			
-			byte monster = (byte)(rand.Next() % (monsterType - 1));
+			byte monster = (byte)(rand.Next(0, monsterType -1));
 			
 			//毎秒１０％の確率で生成
 			if(randomDraw < monsterRate)
