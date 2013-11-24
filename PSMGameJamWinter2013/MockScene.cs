@@ -53,10 +53,10 @@ namespace PSMGameJamWinter2013
 		private static readonly int SCORE_PULS = 10;
 		
 		//300フレームごとにレベルアップ
-		private static readonly int LEVELUP_FRAME = 80;
+		private static readonly int LEVELUP_FRAME = 90;
 		//1回で上がるスピード
-		private static readonly int LEVELUP_SPEED = 5;
-		private static readonly int LEVELUP_MAX = 150;	//速度の限界
+		private static readonly int LEVELUP_SPEED = 3;
+		private static readonly int LEVELUP_MAX = 15;	//速度の限界
 		
 		//出現するモンスターの種類が増えるタイミング
 		private static readonly int MONSTER_ADD_FRAME = 500;
@@ -73,9 +73,9 @@ namespace PSMGameJamWinter2013
 		//難易度カウンターこのカウントがレベルアップフレームを超えたら
 		private int levelUpCnt = 0;
 		
-		private static bool gameOver = false;
+		private bool gameOver = false;
 		
-		private static bool doorOpen = false;
+		private bool doorOpen = false;
 		
 		
 		public MockScene ()
@@ -91,7 +91,7 @@ namespace PSMGameJamWinter2013
 		private System.Timers.Timer timer = new System.Timers.Timer(100);//0/1秒に1回呼び出し
 		
 		//初期位置
-		private int createEnemyPos = 0;
+		private readonly int CREATE_ENEMY_POS = -0;
 		
 		//スコア
 		private int score = 0;
@@ -122,6 +122,9 @@ namespace PSMGameJamWinter2013
 		private byte ikeSpriteNum = 2;
 		private SpriteForTouchList Maou{get;set;}
 		private byte maouSpriteNum = 2;
+		
+		private SpriteForTouch Success = new SpriteForTouch();
+		private SpriteForTouch Loosing = new SpriteForTouch();
 		
 		private SpriteForTouch timeBar = new SpriteForTouch();
 		
@@ -172,6 +175,8 @@ namespace PSMGameJamWinter2013
 									544,
 									scene,
 			                       	false);
+			
+			
 //			background.Sprite.Visible = false;
 			
 			//木
@@ -321,6 +326,12 @@ namespace PSMGameJamWinter2013
 		//0.1秒ごとの呼び出し
     	private void createEnemy()
 		{
+			
+			// ゲームオーバー処理
+			if(gameOver)
+			{
+				return;
+			}
 			//敵の生成
 			int randomDraw =(int)(rand.Next() % 1000);
 			
@@ -337,7 +348,7 @@ namespace PSMGameJamWinter2013
 					{
 						//Draw
 						Teki_soto[i].SetVisible(monster);
-						MoveSprite.SetPositonGridX(Teki_soto[i], createEnemyPos);
+						MoveSprite.SetPositonGridX(Teki_soto[i], CREATE_ENEMY_POS);
 						for(int j = 0; j < this.tekiNum; j++)
 						{
 							//出現位置でぶつかるようなら表示しない
@@ -354,6 +365,7 @@ namespace PSMGameJamWinter2013
 			}
 		}
 		
+		private bool oneFlg= false;
 		/// <summary>
 		/// Update of Scene.
 		/// </summary>
@@ -361,12 +373,57 @@ namespace PSMGameJamWinter2013
 			
 			createEnemy();
 			
-			if (this.mockSceneTime % 30 == 0) {
+			if (this.mockSceneTime % 30 == 0) 
+			{
 				this.timeBar.Sprite.Quad.S.X -= 2;
-				if (this.timeBar.Sprite.Quad.S.X <= 0) {
-					ChangeScene( () => {return new GameSuccessScene();} );
+				if (this.timeBar.Sprite.Quad.S.X <= 0) 
+				{
+					if(!oneFlg)
+					{
+						this.endGoodSe.Play();
+						Success.DrawSprite("seikou.png",
+									0,
+									0,
+									960,
+									544,
+									scene,
+			                       	false);
+						Success.Sprite.Visible = true;
+						oneFlg = true;
+					}
+					//丸ボタンはD
+					if(InputDevice.CircleButton())
+					{
+						ChangeScene( () => {return new TitleScene();} );
+						
+					}
+					return;
 				}
 			}
+			
+				if(gameOver)
+				{
+					if(!oneFlg)
+					{
+						this.endBadSe.Play();
+						Loosing.DrawSprite("shippai.png",
+									0,
+									0,
+									960,
+									544,
+									scene,
+			                       	false);
+						Loosing.Sprite.Visible = true;
+						oneFlg = true;
+					}
+					//丸ボタンはD
+					if(InputDevice.CircleButton())
+					{
+						ChangeScene( () => {return new TitleScene();} );
+						
+					}
+					return;
+				}
 			
 			if (this.mockSceneTime % 2 == 0) {
 				for (int i = 0; i < this.tekiNum; i++) {
@@ -391,8 +448,8 @@ namespace PSMGameJamWinter2013
 			}
 			
 			//四角ボタンはA
-			if(InputDevice.SquareButtonRepeat()
-			   || InputDevice.LeftKeyRepeat()){
+			if((InputDevice.SquareButtonRepeat()
+			   || InputDevice.LeftKeyRepeat())){
 				if(!squareBtnOn)
 				{
 					this.landSe.Play();
@@ -493,31 +550,31 @@ namespace PSMGameJamWinter2013
 			
 			if(levelUpCnt > LEVELUP_FRAME)
 			{
-				levelUpCnt = 0;
-				enemyMoveSpeed += LEVELUP_SPEED;
-				if(enemyMoveSpeed > LEVELUP_MAX)
-				{
-					enemyMoveSpeed = LEVELUP_MAX;
+					levelUpCnt = 0;
+					enemyMoveSpeed += LEVELUP_SPEED;
+					if(enemyMoveSpeed > LEVELUP_MAX)
+					{
+						enemyMoveSpeed = LEVELUP_MAX;
+					}
 				}
-			}
-			levelUpCnt++;
-			
-			if(monsterTypeCnt > MONSTER_ADD_FRAME)
-			{
-				monsterType ++;
-				if(monsterType >= ENEMY_ID_MAX)
+				levelUpCnt++;
+				
+				if(monsterTypeCnt > MONSTER_ADD_FRAME)
 				{
-					monsterType = ENEMY_ID_MAX - 1;
+					monsterType ++;
+					if(monsterType >= ENEMY_ID_MAX)
+					{
+						monsterType = ENEMY_ID_MAX - 1;
+					}
+					monsterTypeCnt = 0;
 				}
-				monsterTypeCnt = 0;
-			}
-			monsterTypeCnt++;
-			
-			if(monsterRateUpCnt > MONSTER_RATE_FRAME)
-			{
-				monsterRate += MONSTER_RATE_UP;
-			}
-			monsterRateUpCnt ++;
+				monsterTypeCnt++;
+				
+				if(monsterRateUpCnt > MONSTER_RATE_FRAME)
+				{
+					monsterRate += MONSTER_RATE_UP;
+				}
+				monsterRateUpCnt ++;
 			
 		}//Update()
 		
