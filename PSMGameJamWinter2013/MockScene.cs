@@ -91,7 +91,7 @@ namespace PSMGameJamWinter2013
 		private System.Timers.Timer timer = new System.Timers.Timer(100);//0/1秒に1回呼び出し
 		
 		//初期位置
-		private readonly int CREATE_ENEMY_POS = -0;
+		private readonly int CREATE_ENEMY_POS = -200;
 		
 		//スコア
 		private int score = 0;
