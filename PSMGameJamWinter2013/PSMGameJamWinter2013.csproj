@@ -172,6 +172,7 @@
     <Content Include="resources\ki_ha.png" />
     <Content Include="resources\setsumei.png" />
     <Content Include="resources\botan_setsumei.png" />
+    <Content Include="resources\taitoru_2.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />

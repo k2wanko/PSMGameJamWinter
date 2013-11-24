@@ -38,7 +38,7 @@ namespace PSMGameJamWinter2013
 			scene.Camera.SetViewFromViewport();
 			
 			//画像の描画 960x544 //vita画面解像度 20x11.25(左上)
-			background0.DrawSprite("taitoru.png",
+			background0.DrawSprite("taitoru_2.png",
 									0,
 									0,
 									960,
