@@ -11,18 +11,36 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 using Sce.PlayStation.Core.Imaging;
 
+using System.Timers;//timer
 
 using ApmFw;
 namespace PSMGameJamWinter2013
 {
 	public class MockScene : GameScene
 	{
+		//敵のID
+		private static readonly byte ENEMY_ID_NONE = 255;
+		private static readonly byte ENEMY_ID_SANKAKU = 0;
+		private static readonly byte ENEMY_ID_SIKAKU = 1;
+		private static readonly byte ENEMY_ID_BATU = 2;
+		private static readonly byte ENEMY_ID_MARU = 3;
+		private static readonly byte ENEMY_ID_MAX = 4;
+		
+		
 		public MockScene ()
 		{
 		}
 		
+		//ランダム
+		private Random rand = new Random();
+		
 		//このシーンのタイマー
 		private long mockSceneTime = 0;
+		
+		private System.Timers.Timer timer = new System.Timers.Timer(100);//0/1秒に1回呼び出し
+		
+		//初期位置
+		private int createEnemyPos = 0;
 		
 		//スコア
 		private int score = 0;
@@ -33,22 +51,25 @@ namespace PSMGameJamWinter2013
 		private bool squareBtnOn = false;
 		private bool crossBtnOn = false;
 		
-		private SpriteForTouchList teki_ki{get;set;}
+		//窓の外の敵の数
+		private int tekiNum = 8;
+		
+		private List<SpriteForTouchList> Teki_soto{get;set;}
 		private byte teki_kiSpriteNum = 2;
 		private SpriteForTouch background = new SpriteForTouch();
-		private SpriteForTouchList ki{get;set;}
+		private SpriteForTouchList Ki{get;set;}
 		private byte kiSpriteNum = 2;
-		private SpriteForTouchList teki_ki_tobira{get;set;}
-		private byte teki_ki_tobiraSpriteNum = 2;
-		private SpriteForTouchList danro{get;set;}
+		private SpriteForTouchList Teki_tobira{get;set;}
+		private byte teki_tobiraSpriteNum = 2;
+		private SpriteForTouchList Danro{get;set;}
 		private byte danroSpriteNum = 2;
-		private SpriteForTouchList kapet{get;set;}
+		private SpriteForTouchList Kapet{get;set;}
 		private byte kapetSpriteNum = 2;
-		private SpriteForTouchList bed{get;set;}
+		private SpriteForTouchList Bed{get;set;}
 		private byte bedSpriteNum = 2;
-		private SpriteForTouchList ike{get;set;}
+		private SpriteForTouchList Ike{get;set;}
 		private byte ikeSpriteNum = 2;
-		private SpriteForTouchList maou{get;set;}
+		private SpriteForTouchList Maou{get;set;}
 		private byte maouSpriteNum = 2;
 		
 		private SpriteForTouch timeBar = new SpriteForTouch();
@@ -59,27 +80,41 @@ namespace PSMGameJamWinter2013
 		public override Scene Initialize(){
 			scene.Camera.SetViewFromViewport();
 			
-			//敵_木_窓
-			List<SpriteForTouch> teki_kiList = new List<SpriteForTouch>();
-			SpriteForTouch[] teki_kiSpriteForTouch = new SpriteForTouch[this.teki_kiSpriteNum];
-			for(int i = 0; i < this.teki_kiSpriteNum; i++) {
-				teki_kiSpriteForTouch[i] = new SpriteForTouch();
+			//敵_窓の外
+			this.Teki_soto = new List<SpriteForTouchList>();
+			//とりあえず5体ぐらい作る
+			for (int i = 0; i < this.tekiNum ; i++) {
+				//敵_木
+				List<SpriteForTouch> teki_kiList = new List<SpriteForTouch>();
+				SpriteForTouch[] teki_kiSpriteForTouch = new SpriteForTouch[ENEMY_ID_MAX];
+				for(int k = 0; k < ENEMY_ID_MAX; k++) {
+					teki_kiSpriteForTouch[k] = new SpriteForTouch();
+				}
+				//アニメーション(各敵の種類
+				
+//				teki_kiSpriteForTouch[0].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
+//				teki_kiSpriteForTouch[1].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
+				
+				//各対応した敵キャラクターをロード
+				teki_kiSpriteForTouch[ENEMY_ID_MARU].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
+				teki_kiSpriteForTouch[ENEMY_ID_SANKAKU].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
+				teki_kiSpriteForTouch[ENEMY_ID_SIKAKU].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
+				teki_kiSpriteForTouch[ENEMY_ID_BATU].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
+				
+				foreach (SpriteForTouch temp in teki_kiSpriteForTouch) {
+					teki_kiList.Add(temp);
+				}
+				
+				this.Teki_soto.Add(new SpriteForTouchList(teki_kiList,false));
+				this.Teki_soto[i].AddToScene(scene);
+				this.Teki_soto[i].SetVisible(0);
 			}
-			teki_kiSpriteForTouch[0].DrawSprite("teki_ki.png", -240, 10, 240f, 240f);
-			teki_kiSpriteForTouch[1].DrawSprite("teki_ki.png", -240, 10, 240f, 240f);
 			
-			foreach (SpriteForTouch temp in teki_kiSpriteForTouch) {
-				teki_kiList.Add(temp);
-			}
-			
-			this.teki_ki = new SpriteForTouchList(teki_kiList,false);
-			this.teki_ki.AddToScene(scene);
-			this.teki_kiSpriteNum = this.teki_ki.SetVisible(0);
 			
 			//画像の描画 960x544 //vita画面解像度 20x11.25(左上)
 			//画像のセット
 			//背景
-			background.DrawSprite("gamen_rafu_2.png",
+			background.DrawSprite("kabe.png",
 									0,
 									0,
 									960,
@@ -94,20 +129,20 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.kiSpriteNum; i++) {
 				kiSpriteForTouch[i] = new SpriteForTouch();
 			}
-			kiSpriteForTouch[0].DrawSprite("waku_blue.png", 480, 10,220f,340f);
-			kiSpriteForTouch[1].DrawSprite("waku_red.png", 480, 10,220f,340f);
+			kiSpriteForTouch[0].DrawSprite("ki_raf.png", 450, 10,280f,340f);
+			kiSpriteForTouch[1].DrawSprite("waku_red.png", 450, 10,280f,340f);
 			
 			foreach (SpriteForTouch temp in kiSpriteForTouch) {
 				kiList.Add(temp);
 			}
-			this.ki = new SpriteForTouchList(kiList,true);
-			this.ki.AddToScene(scene);
-			this.kiSpriteNum = this.ki.SetVisible(0);
+			this.Ki = new SpriteForTouchList(kiList,true);
+			this.Ki.AddToScene(scene);
+			this.Ki.SetVisible(0);
 			
 			//敵_木_扉
 			List<SpriteForTouch> teki_ki_tobiraList = new List<SpriteForTouch>();
-			SpriteForTouch[] teki_ki_tobiraSpriteForTouch = new SpriteForTouch[this.teki_ki_tobiraSpriteNum];
-			for(int i = 0; i < this.teki_ki_tobiraSpriteNum; i++) {
+			SpriteForTouch[] teki_ki_tobiraSpriteForTouch = new SpriteForTouch[this.teki_tobiraSpriteNum];
+			for(int i = 0; i < this.teki_tobiraSpriteNum; i++) {
 				teki_ki_tobiraSpriteForTouch[i] = new SpriteForTouch();
 			}
 			teki_ki_tobiraSpriteForTouch[0].DrawSprite("teki_ki.png", 300, 10, 240f, 240f);
@@ -116,10 +151,10 @@ namespace PSMGameJamWinter2013
 			foreach (SpriteForTouch temp in teki_ki_tobiraSpriteForTouch) {
 				teki_ki_tobiraList.Add(temp);
 			}
-			this.teki_ki_tobira = new SpriteForTouchList(teki_ki_tobiraList,false);
-			this.teki_ki_tobira.AddToScene(scene);
-			this.teki_ki_tobiraSpriteNum = this.teki_ki_tobira.SetVisible(0);
-			this.teki_ki_tobira.SetUnVisible();
+			this.Teki_tobira = new SpriteForTouchList(teki_ki_tobiraList,false);
+			this.Teki_tobira.AddToScene(scene);
+			this.teki_tobiraSpriteNum = this.Teki_tobira.SetVisible(0);
+			this.Teki_tobira.SetUnVisible();
 			
 			//暖炉
 			List<SpriteForTouch> danroList = new List<SpriteForTouch>();
@@ -127,15 +162,15 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.danroSpriteNum; i++) {
 				danroSpriteForTouch[i] = new SpriteForTouch();
 			}
-			danroSpriteForTouch[0].DrawSprite("waku_blue.png", 710, 220,250f,250f);
-			danroSpriteForTouch[1].DrawSprite("waku_red.png", 710, 220,250f,250f);
+			danroSpriteForTouch[0].DrawSprite("danro_raf.png", 710, 215,250f,240f);
+			danroSpriteForTouch[1].DrawSprite("waku_red.png", 710, 215,250f,240f);
 			
 			foreach (SpriteForTouch temp in danroSpriteForTouch) {
 				danroList.Add(temp);
 			}
-			this.danro = new SpriteForTouchList(danroList,true);
-			this.danro.AddToScene(scene);
-			this.danroSpriteNum = this.danro.SetVisible(0);
+			this.Danro = new SpriteForTouchList(danroList,true);
+			this.Danro.AddToScene(scene);
+			this.Danro.SetVisible(0);
 			
 			//ベッド
 			List<SpriteForTouch> bedList = new List<SpriteForTouch>();
@@ -143,15 +178,15 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.bedSpriteNum; i++) {
 				bedSpriteForTouch[i] = new SpriteForTouch();
 			}
-			bedSpriteForTouch[0].DrawSprite("waku_blue.png", 500, 250, 240f, 200f);
-			bedSpriteForTouch[1].DrawSprite("waku_red.png", 500, 250, 240f, 200f);
+			bedSpriteForTouch[0].DrawSprite("bed_raf.png", 450, 250, 260f, 185f);
+			bedSpriteForTouch[1].DrawSprite("waku_red.png", 450, 250, 260f, 185f);
 			
 			foreach (SpriteForTouch temp in bedSpriteForTouch) {
 				bedList.Add(temp);
 			}
-			this.bed = new SpriteForTouchList(bedList,false);
-			this.bed.AddToScene(scene);
-			this.bedSpriteNum = this.bed.SetVisible(0);
+			this.Bed = new SpriteForTouchList(bedList,false);
+			this.Bed.AddToScene(scene);
+			this.Bed.SetVisible(0);
 			
 			//魔王
 			List<SpriteForTouch> maouList = new List<SpriteForTouch>();
@@ -159,15 +194,15 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.maouSpriteNum; i++) {
 				maouSpriteForTouch[i] = new SpriteForTouch();
 			}
-			maouSpriteForTouch[0].DrawSprite("maou.png", 520, 180,180f,180f);
-			maouSpriteForTouch[1].DrawSprite("maou2.png", 520, 180,180f,180f);
+			maouSpriteForTouch[0].DrawSprite("maou.png", 520, 180,150f,180f);
+			maouSpriteForTouch[1].DrawSprite("maou2.png", 520, 180,150f,180f);
 			
 			foreach (SpriteForTouch temp in maouSpriteForTouch) {
 				maouList.Add(temp);
 			}
-			this.maou = new SpriteForTouchList(maouList,false);
-			this.maou.AddToScene(scene);
-			this.maouSpriteNum = this.maou.SetVisible(0);
+			this.Maou = new SpriteForTouchList(maouList,false);
+			this.Maou.AddToScene(scene);
+			this.Maou.SetVisible(0);
 			
 			//カーペット
 			List<SpriteForTouch> kapetList = new List<SpriteForTouch>();
@@ -175,15 +210,15 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.kapetSpriteNum; i++) {
 				kapetSpriteForTouch[i] = new SpriteForTouch();
 			}
-			kapetSpriteForTouch[0].DrawSprite("waku_blue.png", 180, 300,350f,200f);
-			kapetSpriteForTouch[1].DrawSprite("waku_red.png", 180, 300,350f,200f);
+			kapetSpriteForTouch[0].DrawSprite("karpet_raf.png", 180, 305, 290f,150f);
+			kapetSpriteForTouch[1].DrawSprite("waku_red.png", 180, 305, 290f,150f);
 			
 			foreach (SpriteForTouch temp in kapetSpriteForTouch) {
 				kapetList.Add(temp);
 			}
-			this.kapet = new SpriteForTouchList(kapetList,true);
-			this.kapet.AddToScene(scene);
-			this.kapetSpriteNum = this.kapet.SetVisible(0);
+			this.Kapet = new SpriteForTouchList(kapetList,true);
+			this.Kapet.AddToScene(scene);
+			this.Kapet.SetVisible(0);
 			
 			//池
 			List<SpriteForTouch> ikeList = new List<SpriteForTouch>();
@@ -191,15 +226,15 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.ikeSpriteNum; i++) {
 				ikeSpriteForTouch[i] = new SpriteForTouch();
 			}
-			ikeSpriteForTouch[0].DrawSprite("waku_blue.png", 470, 400,350f,144f);
-			ikeSpriteForTouch[1].DrawSprite("waku_red.png", 470, 400, 350f,144f);
+			ikeSpriteForTouch[0].DrawSprite("ike_raf.png", 450, 397,305f,144f);
+			ikeSpriteForTouch[1].DrawSprite("waku_red.png", 450, 397, 305f,144f);
 			
 			foreach (SpriteForTouch temp in ikeSpriteForTouch) {
 				ikeList.Add(temp);
 			}
-			this.ike = new SpriteForTouchList(ikeList,true);
-			this.ike.AddToScene(scene);
-			this.ikeSpriteNum = this.ike.SetVisible(0);
+			this.Ike = new SpriteForTouchList(ikeList,true);
+			this.Ike.AddToScene(scene);
+			this.Ike.SetVisible(0);
 			
 			
 			//タイムバー
@@ -216,10 +251,48 @@ namespace PSMGameJamWinter2013
 
 		}//Initialize()
 		
+		//0.1秒ごとの呼び出し
+    	private void createEnemy()
+		{
+			//敵の生成
+			int randomDraw =(int)(rand.Next() % 1000);
+			
+			byte monster = (byte)(rand.Next() % (ENEMY_ID_MAX - 1));
+			
+			//毎秒１０％の確率で生成
+			if(randomDraw < 1000)
+			{
+				for(int i = 0; i < this.tekiNum; i++)
+				{
+					//描画できるSpriteがあるか見る
+					//ぶつかってたら生成しない
+					if(!Teki_soto[i].isVisible())
+					{
+						//Draw
+						Teki_soto[i].SetVisible(monster);
+						MoveSprite.SetPositonGridX(Teki_soto[i], createEnemyPos);
+						for(int j = 0; j < this.tekiNum; j++)
+						{
+							//出現位置でぶつかるようなら表示しない
+							if(i != j
+							   && Teki_soto[i].isHit(Teki_soto[j].Sprites[Teki_soto[j].NowIndex]))
+							{
+								Teki_soto[i].SetUnVisible();
+								break;
+							}
+						
+						}
+					}
+				}
+			}
+		}
+		
 		/// <summary>
 		/// Update of Scene.
 		/// </summary>
 		public override void Update(){
+			
+			createEnemy();
 			
 			if (this.mockSceneTime % 60 == 0) {
 				this.timeBar.Sprite.Quad.S.X -= 2;
@@ -229,9 +302,13 @@ namespace PSMGameJamWinter2013
 			}
 			
 			if (this.mockSceneTime % 2 == 0) {
-				MoveSprite.Right(teki_ki,5);
-				if (300 <= this.teki_ki.Sprites[teki_ki.NowIndex].Sprite.Quad.T.X) {
-					teki_ki_tobira.SetVisible(0);
+				for (int i = 0; i < this.tekiNum; i++) {
+					MoveSprite.Right(Teki_soto[i],5);
+					if (300 <= this.Teki_soto[i].Sprites[Teki_soto[i].NowIndex].Sprite.Quad.T.X) {
+						//後ろを通過した敵と絵を合わせる
+						Teki_tobira.SetVisible(Teki_soto[i].NowIndex);
+						Teki_soto[i].SetUnVisible();	//全部非表示
+					}
 				}
 			}
 			
@@ -294,33 +371,33 @@ namespace PSMGameJamWinter2013
 			    || circleBtnOn
 			    || squareBtnOn
 			    || crossBtnOn ) {
-				this.maou.SetUnVisible();
+				this.Maou.SetUnVisible();
 			} else {
-				this.maou.SetVisible(0);
+				this.Maou.SetVisible(0);
 			}
 			
 			if (triangleBtnOn) {
-				this.ki.SetVisible(1);
+				this.Ki.SetVisible(1);
 			} else {
-				this.ki.SetVisible(0);
+				this.Ki.SetVisible(0);
 			}
 			
 			if (circleBtnOn) {
-				this.danro.SetVisible(1);
+				this.Danro.SetVisible(1);
 			} else {
-				this.danro.SetVisible(0);
+				this.Danro.SetVisible(0);
 			}
 			
 			if (squareBtnOn) {
-				this.kapet.SetVisible(1);
+				this.Kapet.SetVisible(1);
 			} else {
-				this.kapet.SetVisible(0);
+				this.Kapet.SetVisible(0);
 			}
 			
 			if (crossBtnOn) {
-				this.ike.SetVisible(1);
+				this.Ike.SetVisible(1);
 			} else {
-				this.ike.SetVisible(0);
+				this.Ike.SetVisible(0);
 			}
 			
 		}
@@ -332,7 +409,7 @@ namespace PSMGameJamWinter2013
 			this.scene.RemoveAllChildren(true);//必要 terminateの最初に
 			scene = null;
 			background = null;
-			maou = null;
+			Maou = null;
 		}//Terminate
 	}
 }

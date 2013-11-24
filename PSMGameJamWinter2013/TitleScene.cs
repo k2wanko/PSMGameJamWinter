@@ -32,7 +32,7 @@ namespace PSMGameJamWinter2013
 			scene.Camera.SetViewFromViewport();
 			
 			//画像の描画 960x544 //vita画面解像度 20x11.25(左上)
-			background.DrawSprite("red.png",
+			background.DrawSprite("taitoru.png",
 									0,
 									0,
 									960,
@@ -41,21 +41,21 @@ namespace PSMGameJamWinter2013
 			                       	false);
 			
 			
-			title.DrawSprite("green.png",
-									380,
-									344,
-									200,
-									50,
-									scene,
-			                       	false);
+//			title.DrawSprite("○ボタンスタート！",
+//									380,
+//									344,
+//									50,
+//									new ImageColor(255,255,255,255),
+//									scene,
+//			                       	false);
 			
-			cursor.DrawSprite("cursorRight.png",
-									330,
-									344,
-									50,
-									50,
-									scene,
-			                       	false);
+//			cursor.DrawSprite("cursorRight.png",
+//									330,
+//									344,
+//									50,
+//									50,
+//									scene,
+//			                       	false);
 			
 			return scene;
 

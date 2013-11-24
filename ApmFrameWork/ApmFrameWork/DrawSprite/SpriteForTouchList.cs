@@ -14,7 +14,6 @@ using Sce.PlayStation.HighLevel.GameEngine2D;
 using System.Collections; //ArrayList
 using System.Collections.Generic;
 
-
 namespace ApmFw
 {
 	/// <summary>
@@ -35,6 +34,35 @@ namespace ApmFw
 			}
 			this.SetUnVisible();
 			this.TouchOn = touchOn;
+		}
+		
+		public bool isHit(SpriteForTouch sprite)
+		{
+			float thisTX = this.Sprites[NowIndex].Sprite.Quad.T.X;
+			float thisTY = this.Sprites[NowIndex].Sprite.Quad.T.Y;
+			float thisSX = thisTX + this.Sprites[NowIndex].Sprite.Quad.S.X;
+			float thisSY = thisTY + this.Sprites[NowIndex].Sprite.Quad.S.Y;
+			
+			float spriteTX = sprite.Sprite.Quad.T.X;
+			float spriteTY = sprite.Sprite.Quad.T.Y;
+			float spriteSX = spriteTX + sprite.Sprite.Quad.S.X;
+			float spriteSY = spriteTY + sprite.Sprite.Quad.S.Y;
+			
+			if(isVisible() && sprite.Sprite.Visible)
+			{
+				if((thisTX <=  spriteSX && thisSX >=  spriteTX)
+				   || (thisTX >=  spriteSX && thisSX <=  spriteTX) )
+				{
+//					if(thisTY <=  spriteSY &&
+//				   thisSY >=  spriteSY  ||
+//				   thisTY >=  spriteTY &&
+//				   thisSY <=  spriteTY  )
+//					{
+								return true;
+					}
+//				}
+			}
+			return false;
 		}
 		
 		/// <summary>
@@ -123,6 +151,19 @@ namespace ApmFw
 			foreach (SpriteForTouch spriteForTouch in this.Sprites) {
 				spriteForTouch.Sprite.Visible = false;
 			}
+		}
+		
+		
+		//表示がされていなかったら
+		public bool isVisible()
+		{
+			foreach (SpriteForTouch spriteForTouch in this.Sprites) {
+				if(spriteForTouch.Sprite.Visible != false)
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		/// <summary>
