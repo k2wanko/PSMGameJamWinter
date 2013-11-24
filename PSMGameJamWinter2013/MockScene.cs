@@ -54,9 +54,21 @@ namespace PSMGameJamWinter2013
 		
 		//300フレームごとにレベルアップ
 		private static readonly int LEVELUP_FRAME = 80;
-		
 		//1回で上がるスピード
 		private static readonly int LEVELUP_SPEED = 5;
+		private static readonly int LEVELUP_MAX = 150;	//速度の限界
+		
+		//出現するモンスターの種類が増えるタイミング
+		private static readonly int MONSTER_ADD_FRAME = 500;
+		private int monsterTypeCnt = 0;
+		
+		private int monsterType = 2;	//初期のモンスターの数（1で２匹）
+		
+		private int monsterRate = 100;//モンスターの出現率（１００で１０％）
+		
+		private readonly int MONSTER_RATE_UP = 200;//1回で上がる出現率
+		private readonly int MONSTER_RATE_FRAME = 300;//設定フレームごとに出現率アップ
+		private int monsterRateUpCnt = 0;
 		
 		//難易度カウンターこのカウントがレベルアップフレームを超えたら
 		private int levelUpCnt = 0;
@@ -275,7 +287,6 @@ namespace PSMGameJamWinter2013
 			this.Ike.AddToScene(scene);
 			this.Ike.SetVisible(0);
 			
-			
 			//タイムバー
 			timeBar.DrawSprite("lightBlue.png",
 									10,
@@ -312,10 +323,10 @@ namespace PSMGameJamWinter2013
 			//敵の生成
 			int randomDraw =(int)(rand.Next() % 1000);
 			
-			byte monster = (byte)(rand.Next() % (ENEMY_ID_MAX - 1));
+			byte monster = (byte)(rand.Next() % (monsterType - 1));
 			
 			//毎秒１０％の確率で生成
-			if(randomDraw < 100)
+			if(randomDraw < monsterRate)
 			{
 				for(int i = 0; i < this.tekiNum; i++)
 				{
@@ -466,7 +477,6 @@ namespace PSMGameJamWinter2013
 					||((Teki_tobira.NowIndex == ENEMY_ID_BATU && crossBtnOn))
 					||((Teki_tobira.NowIndex == ENEMY_ID_MARU && circleBtnOn))
 					||((Teki_tobira.NowIndex == ENEMY_ID_SANKAKU && triangleBtnOn))
-					
 					)
 				{
 					score += (SCORE_PULS/DOOR_OPEN_FRAME);
@@ -475,7 +485,7 @@ namespace PSMGameJamWinter2013
 				{
 					gameOver = true;
 				}
-					
+				
 			}
 			//time++
 			mockSceneTime++;
@@ -484,8 +494,29 @@ namespace PSMGameJamWinter2013
 			{
 				levelUpCnt = 0;
 				enemyMoveSpeed += LEVELUP_SPEED;
+				if(enemyMoveSpeed > LEVELUP_MAX)
+				{
+					enemyMoveSpeed = LEVELUP_MAX;
+				}
 			}
 			levelUpCnt++;
+			
+			if(monsterTypeCnt > MONSTER_ADD_FRAME)
+			{
+				monsterType ++;
+				if(monsterType >= ENEMY_ID_MAX)
+				{
+					monsterType = ENEMY_ID_MAX - 1;
+				}
+				monsterTypeCnt = 0;
+			}
+			monsterTypeCnt++;
+			
+			if(monsterRateUpCnt > MONSTER_RATE_FRAME)
+			{
+				monsterRate += MONSTER_RATE_UP;
+			}
+			monsterRateUpCnt ++;
 			
 		}//Update()
 		
@@ -522,9 +553,6 @@ namespace PSMGameJamWinter2013
 			} else {
 				this.Ike.SetVisible(0);
 			}
-			
-
-			
 		}
 		
 		/// <summary>
