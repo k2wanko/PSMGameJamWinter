@@ -34,7 +34,7 @@ namespace PSMGameJamWinter2013
 		//敵がドアを開けている時間フレーム数UP
 		private static readonly int DOOR_OPEN_FRAME = 5;
 		
-		private int enemyMoveSpeed = 3;
+		private int enemyMoveSpeed = 6;
 		
 		private int doorOpenCount = 0;
 		
@@ -57,10 +57,10 @@ namespace PSMGameJamWinter2013
 		private static readonly int SCORE_PULS = 10;
 		
 		//300フレームごとにレベルアップ
-		private static readonly int LEVELUP_FRAME = 90;
+		private static readonly int LEVELUP_FRAME = 500;
 		//1回で上がるスピード
-		private static readonly int LEVELUP_SPEED = 3;
-		private static readonly int LEVELUP_MAX = 15;	//速度の限界
+		private static readonly int LEVELUP_SPEED = 1;
+		private static readonly int LEVELUP_MAX = 30;	//速度の限界
 		
 		//出現するモンスターの種類が増えるタイミング
 		private static readonly int MONSTER_ADD_FRAME = 500;
@@ -226,6 +226,7 @@ namespace PSMGameJamWinter2013
 			this.Teki_tobira.AddToScene(scene);
 			this.teki_tobiraSpriteNum = this.Teki_tobira.SetVisible(DOOR_CLOSE);
 			this.Teki_tobira.SetUnVisible();
+			this.Teki_tobira.SetVisible(DOOR_CLOSE);
 			
 			//暖炉
 			List<SpriteForTouch> danroList = new List<SpriteForTouch>();
@@ -558,6 +559,7 @@ namespace PSMGameJamWinter2013
 					||((Teki_tobira.NowIndex == ENEMY_ID_BATU && crossBtnOn))
 					||((Teki_tobira.NowIndex == ENEMY_ID_MARU && circleBtnOn))
 					||((Teki_tobira.NowIndex == ENEMY_ID_SANKAKU && triangleBtnOn))
+					||(Teki_tobira.NowIndex >= ENEMY_ID_MAX)
 					)
 				{
 					score += (SCORE_PULS/DOOR_OPEN_FRAME);
