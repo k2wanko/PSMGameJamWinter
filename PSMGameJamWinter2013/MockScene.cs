@@ -29,13 +29,12 @@ namespace PSMGameJamWinter2013
 		private SoundPlayer waterSe;
 		private SoundPlayer woodSe;
 		
-		//ドアから出てくる
-		//消える
-		//スコア
-		//失敗したときのゲームオーバー
+		//レベルUP
 		
-		//敵がドアを開けている時間フレーム数
+		//敵がドアを開けている時間フレーム数UP
 		private static readonly int DOOR_OPEN_FRAME = 5;
+		
+		private int enemyMoveSpeed = 3;
 		
 		private int doorOpenCount = 0;
 		
@@ -52,6 +51,15 @@ namespace PSMGameJamWinter2013
 		
 		//1回に入る点数
 		private static readonly int SCORE_PULS = 10;
+		
+		//300フレームごとにレベルアップ
+		private static readonly int LEVELUP_FRAME = 80;
+		
+		//1回で上がるスピード
+		private static readonly int LEVELUP_SPEED = 5;
+		
+		//難易度カウンターこのカウントがレベルアップフレームを超えたら
+		private int levelUpCnt = 0;
 		
 		private static bool gameOver = false;
 		
@@ -83,7 +91,7 @@ namespace PSMGameJamWinter2013
 		private bool crossBtnOn = false;
 		
 		//窓の外の敵の数
-		private int tekiNum = 6;
+		private int tekiNum = 6;		
 		
 		private List<SpriteForTouchList> Teki_soto{get;set;}
 		private byte teki_kiSpriteNum = 2;
@@ -350,7 +358,7 @@ namespace PSMGameJamWinter2013
 			
 			if (this.mockSceneTime % 2 == 0) {
 				for (int i = 0; i < this.tekiNum; i++) {
-					MoveSprite.Right(Teki_soto[i],5);
+					MoveSprite.Right(Teki_soto[i],enemyMoveSpeed);
 					if (300 <= this.Teki_soto[i].Sprites[Teki_soto[i].NowIndex].Sprite.Quad.T.X) {
 						//後ろを通過した敵と絵を合わせる
 						Teki_tobira.SetVisible(Teki_soto[i].NowIndex);
@@ -373,9 +381,12 @@ namespace PSMGameJamWinter2013
 			//四角ボタンはA
 			if(InputDevice.SquareButtonRepeat()
 			   || InputDevice.LeftKeyRepeat()){
+				if(!squareBtnOn)
+				{
+					this.landSe.Play();
+				}
 				squareBtnOn = true;
 				this.Kapet.SetVisible(1);
-				this.landSe.Play();
 			} else {
 				squareBtnOn = false;
 				this.Kapet.SetVisible(0);
@@ -384,9 +395,13 @@ namespace PSMGameJamWinter2013
 			//三角ボタンはW
 			if(InputDevice.TriangleButtonRepeat()
 			   || InputDevice.UpKeyRepeat()){
+				if(!triangleBtnOn)
+				{
+					this.woodSe.Play();
+				}
 				triangleBtnOn = true;
 				this.Ki.SetVisible(1);
-				this.woodSe.Play();
+
 			} else {
 				triangleBtnOn = false;
 				this.Ki.SetVisible(0);
@@ -395,9 +410,13 @@ namespace PSMGameJamWinter2013
 			//バツボタンはS
 			if(InputDevice.CrossButtonRepeat()
 			   || InputDevice.DownKeyRepeat()){
+				if(!crossBtnOn)
+				{
+					this.waterSe.Play();
+				}
 				crossBtnOn = true;
 				this.Ike.SetVisible(1);
-				this.waterSe.Play();
+				
 			} else {
 				crossBtnOn = false;
 				this.Ike.SetVisible(0);
@@ -406,9 +425,13 @@ namespace PSMGameJamWinter2013
 			//丸ボタンはD
 			if(InputDevice.CircleButtonRepeat()
 			   || InputDevice.RightKeyRepeat()){
+				if(!circleBtnOn)
+				{
+					this.fireSe.Play();
+				}
 				circleBtnOn = true;
 				this.Danro.SetVisible(1);
-				this.fireSe.Play();
+				
 			} else {
 				circleBtnOn = false;
 				this.Danro.SetVisible(0);
@@ -456,6 +479,13 @@ namespace PSMGameJamWinter2013
 			}
 			//time++
 			mockSceneTime++;
+			
+			if(levelUpCnt > LEVELUP_FRAME)
+			{
+				levelUpCnt = 0;
+				enemyMoveSpeed += LEVELUP_SPEED;
+			}
+			levelUpCnt++;
 			
 		}//Update()
 		
@@ -505,6 +535,7 @@ namespace PSMGameJamWinter2013
 			scene = null;
 			background = null;
 			Maou = null;
+			Audio.StopBgm();
 		}//Terminate
 	}
 }
