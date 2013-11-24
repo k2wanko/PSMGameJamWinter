@@ -102,8 +102,8 @@ namespace PSMGameJamWinter2013
 			}
 			//丸ボタンはD
 			if(InputDevice.CircleButton()){
-//				ChangeScene( () => {return new MockScene();} );
-				ChangeScene( () => {return new MainScene();} );
+				ChangeScene( () => {return new MockScene();} );
+//				ChangeScene( () => {return new MainScene();} );
 			}
 			
 			// X keyはStart

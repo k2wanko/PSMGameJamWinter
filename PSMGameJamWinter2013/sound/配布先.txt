@@ -1,0 +1,5 @@
+フリー音楽素材　魔王魂
+http://maoudamashii.jokersounds.com/
+使用素材ファイル : 元ファイル名
+door_open.wav　　:se_maoudamashii_se_door03.wav
+door_close.wav 　:se_maoudamashii_se_door05.wav

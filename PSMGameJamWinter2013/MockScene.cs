@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using Sce.PlayStation.Core;
+using Sce.PlayStation.Core.Audio;
 using Sce.PlayStation.Core.Environment;
 using Sce.PlayStation.Core.Graphics;
 using Sce.PlayStation.Core.Input;
@@ -18,6 +19,29 @@ namespace PSMGameJamWinter2013
 {
 	public class MockScene : GameScene
 	{
+		//音
+		private SoundPlayer doorCloseSe;
+		private SoundPlayer doorOpenSe;
+		private SoundPlayer endBadSe;
+		private SoundPlayer endGoodSe;
+		private SoundPlayer fireSe;
+		private SoundPlayer landSe;
+		private SoundPlayer waterSe;
+		private SoundPlayer woodSe;
+		
+		//ドアから出てくる
+		//消える
+		//スコア
+		//失敗したときのゲームオーバー
+		
+		//敵がドアを開けている時間フレーム数
+		private static readonly int DOOR_OPEN_FRAME = 5;
+		
+		private int doorOpenCount = 0;
+		
+		private static readonly byte DOOR_CLOSE  = 0;
+		private static readonly byte DOOR_OPEN  = 1;
+		
 		//敵のID
 		private static readonly byte ENEMY_ID_NONE = 255;
 		private static readonly byte ENEMY_ID_SANKAKU = 0;
@@ -25,6 +49,13 @@ namespace PSMGameJamWinter2013
 		private static readonly byte ENEMY_ID_BATU = 2;
 		private static readonly byte ENEMY_ID_MARU = 3;
 		private static readonly byte ENEMY_ID_MAX = 4;
+		
+		//1回に入る点数
+		private static readonly int SCORE_PULS = 10;
+		
+		private static bool gameOver = false;
+		
+		private static bool doorOpen = false;
 		
 		
 		public MockScene ()
@@ -52,7 +83,7 @@ namespace PSMGameJamWinter2013
 		private bool crossBtnOn = false;
 		
 		//窓の外の敵の数
-		private int tekiNum = 8;
+		private int tekiNum = 6;
 		
 		private List<SpriteForTouchList> Teki_soto{get;set;}
 		private byte teki_kiSpriteNum = 2;
@@ -130,7 +161,7 @@ namespace PSMGameJamWinter2013
 				kiSpriteForTouch[i] = new SpriteForTouch();
 			}
 			kiSpriteForTouch[0].DrawSprite("ki_raf.png", 450, 10,280f,340f);
-			kiSpriteForTouch[1].DrawSprite("waku_red.png", 450, 10,280f,340f);
+			kiSpriteForTouch[1].DrawSprite("maou_ki.png", 450, 10,280f,340f);
 			
 			foreach (SpriteForTouch temp in kiSpriteForTouch) {
 				kiList.Add(temp);
@@ -145,15 +176,15 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.teki_tobiraSpriteNum; i++) {
 				teki_ki_tobiraSpriteForTouch[i] = new SpriteForTouch();
 			}
-			teki_ki_tobiraSpriteForTouch[0].DrawSprite("teki_ki.png", 300, 10, 240f, 240f);
-			teki_ki_tobiraSpriteForTouch[1].DrawSprite("teki_ki.png", 300, 10, 240f, 240f);
+			teki_ki_tobiraSpriteForTouch[DOOR_OPEN].DrawSprite("teki_ki.png", 300, 10, 240f, 240f);
+			teki_ki_tobiraSpriteForTouch[DOOR_CLOSE].DrawSprite("teki_ki.png", 300, 10, 240f, 240f);
 			
 			foreach (SpriteForTouch temp in teki_ki_tobiraSpriteForTouch) {
 				teki_ki_tobiraList.Add(temp);
 			}
 			this.Teki_tobira = new SpriteForTouchList(teki_ki_tobiraList,false);
 			this.Teki_tobira.AddToScene(scene);
-			this.teki_tobiraSpriteNum = this.Teki_tobira.SetVisible(0);
+			this.teki_tobiraSpriteNum = this.Teki_tobira.SetVisible(DOOR_CLOSE);
 			this.Teki_tobira.SetUnVisible();
 			
 			//暖炉
@@ -247,6 +278,22 @@ namespace PSMGameJamWinter2013
 			                       	false);
 			//画像のセットここまで
 			
+			
+			//効果音のセット
+			this.doorCloseSe = Audio.SetEffect("/Application/sound/door_close.wav");
+			this.doorOpenSe = Audio.SetEffect("/Application/sound/door_open.wav");
+			this.endBadSe = Audio.SetEffect("/Application/sound/end_bad.wav");
+			this.endGoodSe = Audio.SetEffect("/Application/sound/end_good.wav");
+			this.fireSe = Audio.SetEffect("/Application/sound/fire.wav");
+			this.landSe = Audio.SetEffect("/Application/sound/land.wav");
+			this.waterSe = Audio.SetEffect("/Application/sound/water.wav");
+			this.woodSe = Audio.SetEffect("/Application/sound/wood.wav");
+			
+			//Bgmのセット
+			Audio.SetBgm("/Application/sound/game_maoudamashii_6_dangeon07.mp3");
+			Audio.SetVolumeBgm(0.1f);
+			Audio.StartBgm();
+			
 			return scene;
 
 		}//Initialize()
@@ -260,7 +307,7 @@ namespace PSMGameJamWinter2013
 			byte monster = (byte)(rand.Next() % (ENEMY_ID_MAX - 1));
 			
 			//毎秒１０％の確率で生成
-			if(randomDraw < 1000)
+			if(randomDraw < 100)
 			{
 				for(int i = 0; i < this.tekiNum; i++)
 				{
@@ -308,6 +355,9 @@ namespace PSMGameJamWinter2013
 						//後ろを通過した敵と絵を合わせる
 						Teki_tobira.SetVisible(Teki_soto[i].NowIndex);
 						Teki_soto[i].SetUnVisible();	//全部非表示
+						Teki_tobira.SetVisible(DOOR_OPEN);
+						doorOpen = true;	//ドアを開ける
+						doorOpenCount = 0;
 					}
 				}
 			}
@@ -324,33 +374,47 @@ namespace PSMGameJamWinter2013
 			if(InputDevice.SquareButtonRepeat()
 			   || InputDevice.LeftKeyRepeat()){
 				squareBtnOn = true;
+				this.Kapet.SetVisible(1);
+				this.landSe.Play();
 			} else {
 				squareBtnOn = false;
+				this.Kapet.SetVisible(0);
 			}
 			
 			//三角ボタンはW
 			if(InputDevice.TriangleButtonRepeat()
 			   || InputDevice.UpKeyRepeat()){
 				triangleBtnOn = true;
+				this.Ki.SetVisible(1);
+				this.woodSe.Play();
 			} else {
 				triangleBtnOn = false;
+				this.Ki.SetVisible(0);
 			}
 			
 			//バツボタンはS
 			if(InputDevice.CrossButtonRepeat()
 			   || InputDevice.DownKeyRepeat()){
 				crossBtnOn = true;
+				this.Ike.SetVisible(1);
+				this.waterSe.Play();
 			} else {
 				crossBtnOn = false;
+				this.Ike.SetVisible(0);
 			}
 			
 			//丸ボタンはD
 			if(InputDevice.CircleButtonRepeat()
 			   || InputDevice.RightKeyRepeat()){
 				circleBtnOn = true;
+				this.Danro.SetVisible(1);
+				this.fireSe.Play();
 			} else {
 				circleBtnOn = false;
+				this.Danro.SetVisible(0);
 			}
+			
+			
 			
 			// X keyはStart
 			//連射不可
@@ -361,6 +425,35 @@ namespace PSMGameJamWinter2013
 			
 			this.hideMaou();
 			
+			if(doorOpen)
+			{
+				doorOpenCount ++;
+				if(doorOpenCount > DOOR_OPEN_FRAME)
+				{
+					//△これが正しい処理
+					//Teki_tobira.SetVisible(DOOR_CLOSE);
+					//見た目上の仮処理
+					Teki_tobira.SetUnVisible();
+					doorOpenCount = 0;
+					doorOpen = false;
+				}
+				
+				if(
+					(Teki_tobira.NowIndex == ENEMY_ID_SIKAKU && squareBtnOn)
+					||((Teki_tobira.NowIndex == ENEMY_ID_BATU && crossBtnOn))
+					||((Teki_tobira.NowIndex == ENEMY_ID_MARU && circleBtnOn))
+					||((Teki_tobira.NowIndex == ENEMY_ID_SANKAKU && triangleBtnOn))
+					
+					)
+				{
+					score += (SCORE_PULS/DOOR_OPEN_FRAME);
+				}
+				else
+				{
+					gameOver = true;
+				}
+					
+			}
 			//time++
 			mockSceneTime++;
 			
@@ -399,6 +492,8 @@ namespace PSMGameJamWinter2013
 			} else {
 				this.Ike.SetVisible(0);
 			}
+			
+
 			
 		}
 		

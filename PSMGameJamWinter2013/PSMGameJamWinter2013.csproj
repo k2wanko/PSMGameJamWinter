@@ -61,6 +61,7 @@
     <None Include="resources\walk.tps" />
     <None Include="resources\walk.xml" />
     <None Include="saveSample\saveData.xml" />
+    <None Include="sound\配布先.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\backBtn.png" />
@@ -138,6 +139,21 @@
     <Content Include="resources\seikou.png" />
     <Content Include="resources\shippai.png" />
     <Content Include="resources\maou_ki.png" />
+    <Content Include="sound\game_maoudamashii_6_dangeon07.mp3" />
+    <Content Include="sound\game_maoudamashii_7_event43.mp3" />
+    <Content Include="sound\game_maoudamashii_7_event44.mp3" />
+    <Content Include="sound\end_bad.wav" />
+    <Content Include="sound\end_good.wav" />
+    <Content Include="sound\startbtn.wav" />
+    <Content Include="sound\door_close.wav" />
+    <Content Include="sound\door_open.wav" />
+    <Content Include="sound\fire.wav" />
+    <Content Include="sound\land.wav" />
+    <Content Include="sound\se_maoudamashii_element_water02.mp3" />
+    <Content Include="sound\se_maoudamashii_se_door02.mp3" />
+    <Content Include="sound\se_maoudamashii_se_door03.mp3" />
+    <Content Include="sound\water.wav" />
+    <Content Include="sound\wood.wav" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />
