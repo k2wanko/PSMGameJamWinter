@@ -157,6 +157,19 @@
     <Content Include="resources\teki_hikui.png" />
     <Content Include="resources\teki_honoo.png" />
     <Content Include="resources\teki_mizu.png" />
+    <Content Include="resources\danro_kakure.png" />
+    <Content Include="resources\ike_kakure.png" />
+    <Content Include="resources\karpet_kakure.png" />
+    <Content Include="resources\ki_kakure.png" />
+    <Content Include="resources\tobira.png" />
+    <Content Include="resources\bed.png" />
+    <Content Include="resources\danro.png" />
+    <Content Include="resources\haikei.png" />
+    <Content Include="resources\haikei_ushiro.png" />
+    <Content Include="resources\ike.png" />
+    <Content Include="resources\karpet.png" />
+    <Content Include="resources\ki.png" />
+    <Content Include="resources\ki_ha.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />

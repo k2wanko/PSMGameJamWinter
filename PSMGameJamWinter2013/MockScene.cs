@@ -38,8 +38,12 @@ namespace PSMGameJamWinter2013
 		
 		private int doorOpenCount = 0;
 		
-		private static readonly byte DOOR_CLOSE  = 0;
-		private static readonly byte DOOR_OPEN  = 1;
+		private static readonly byte DOOR_OPEN_SANKAKU  = 0;
+		private static readonly byte DOOR_OPEN_SIKAKU  = 1;
+		private static readonly byte DOOR_OPEN_BATU  = 2;
+		private static readonly byte DOOR_OPEN_MARU  = 3;
+		private static readonly byte DOOR_CLOSE  = 4;
+		private static readonly byte DOOR_OPEN_MAX  = 5;
 		
 		//敵のID
 		private static readonly byte ENEMY_ID_NONE = 255;
@@ -62,7 +66,7 @@ namespace PSMGameJamWinter2013
 		private static readonly int MONSTER_ADD_FRAME = 500;
 		private int monsterTypeCnt = 0;
 		
-		private int monsterType = 2;	//初期のモンスターの数（1で２匹）
+		private int monsterType = 5;	//初期のモンスターの数（1で２匹）
 		
 		private int monsterRate = 100;//モンスターの出現率（１００で１０％）
 		
@@ -105,13 +109,14 @@ namespace PSMGameJamWinter2013
 		//窓の外の敵の数
 		private int tekiNum = 6;		
 		
+		private SpriteForTouch background0 = new SpriteForTouch();
 		private List<SpriteForTouchList> Teki_soto{get;set;}
 		private byte teki_kiSpriteNum = 2;
-		private SpriteForTouch background = new SpriteForTouch();
+		private SpriteForTouch background1 = new SpriteForTouch();
 		private SpriteForTouchList Ki{get;set;}
 		private byte kiSpriteNum = 2;
 		private SpriteForTouchList Teki_tobira{get;set;}
-		private byte teki_tobiraSpriteNum = 2;
+		private byte teki_tobiraSpriteNum = DOOR_OPEN_MAX;
 		private SpriteForTouchList Danro{get;set;}
 		private byte danroSpriteNum = 2;
 		private SpriteForTouchList Kapet{get;set;}
@@ -131,6 +136,13 @@ namespace PSMGameJamWinter2013
 		public override Scene Initialize(){
 			scene.Camera.SetViewFromViewport();
 			
+			background0.DrawSprite("haikei_ushiro.png",
+									0,
+									0,
+									960,
+									544,
+									scene,
+			                       	false);
 			//敵_窓の外
 			this.Teki_soto = new List<SpriteForTouchList>();
 			//とりあえず5体ぐらい作る
@@ -165,7 +177,7 @@ namespace PSMGameJamWinter2013
 			//画像の描画 960x544 //vita画面解像度 20x11.25(左上)
 			//画像のセット
 			//背景
-			background.DrawSprite("kabe.png",
+			background1.DrawSprite("haikei.png",
 									0,
 									0,
 									960,
@@ -180,8 +192,8 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.kiSpriteNum; i++) {
 				kiSpriteForTouch[i] = new SpriteForTouch();
 			}
-			kiSpriteForTouch[0].DrawSprite("ki_raf.png", 450, 10,280f,340f);
-			kiSpriteForTouch[1].DrawSprite("maou_ki.png", 450, 10,280f,340f);
+			kiSpriteForTouch[0].DrawSprite("ki.png", 450, 10,280f,340f);
+			kiSpriteForTouch[1].DrawSprite("ki_kakure.png", 450, 10,280f,340f);
 			
 			foreach (SpriteForTouch temp in kiSpriteForTouch) {
 				kiList.Add(temp);
@@ -196,8 +208,11 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.teki_tobiraSpriteNum; i++) {
 				teki_ki_tobiraSpriteForTouch[i] = new SpriteForTouch();
 			}
-			teki_ki_tobiraSpriteForTouch[DOOR_OPEN].DrawSprite("teki_ki.png", 300, 10, 240f, 240f);
-			teki_ki_tobiraSpriteForTouch[DOOR_CLOSE].DrawSprite("teki_ki.png", 300, 10, 240f, 240f);
+			teki_ki_tobiraSpriteForTouch[DOOR_OPEN_SANKAKU].DrawSprite("teki_hikui.png", 300, 10, 240f, 240f);
+			teki_ki_tobiraSpriteForTouch[DOOR_OPEN_SIKAKU].DrawSprite("teki_mizu.png", 300, 10, 240f, 240f);
+			teki_ki_tobiraSpriteForTouch[DOOR_OPEN_BATU].DrawSprite("teki_honoo.png", 300, 10, 240f, 240f);
+			teki_ki_tobiraSpriteForTouch[DOOR_OPEN_MARU].DrawSprite("teki_ki.png", 300, 10, 240f, 240f);
+			teki_ki_tobiraSpriteForTouch[DOOR_CLOSE].DrawSprite("tobira.png", 300, 10, 240f, 240f);
 			
 			foreach (SpriteForTouch temp in teki_ki_tobiraSpriteForTouch) {
 				teki_ki_tobiraList.Add(temp);
@@ -213,8 +228,8 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.danroSpriteNum; i++) {
 				danroSpriteForTouch[i] = new SpriteForTouch();
 			}
-			danroSpriteForTouch[0].DrawSprite("danro_raf.png", 710, 215,250f,240f);
-			danroSpriteForTouch[1].DrawSprite("waku_red.png", 710, 215,250f,240f);
+			danroSpriteForTouch[0].DrawSprite("danro.png", 710, 215,250f,240f);
+			danroSpriteForTouch[1].DrawSprite("danro_kakure.png", 710, 215,250f,240f);
 			
 			foreach (SpriteForTouch temp in danroSpriteForTouch) {
 				danroList.Add(temp);
@@ -229,8 +244,8 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.bedSpriteNum; i++) {
 				bedSpriteForTouch[i] = new SpriteForTouch();
 			}
-			bedSpriteForTouch[0].DrawSprite("bed_raf.png", 450, 250, 260f, 185f);
-			bedSpriteForTouch[1].DrawSprite("waku_red.png", 450, 250, 260f, 185f);
+			bedSpriteForTouch[0].DrawSprite("bed.png", 450, 250, 260f, 185f);
+			bedSpriteForTouch[1].DrawSprite("bed.png", 450, 250, 260f, 185f);
 			
 			foreach (SpriteForTouch temp in bedSpriteForTouch) {
 				bedList.Add(temp);
@@ -261,8 +276,8 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.kapetSpriteNum; i++) {
 				kapetSpriteForTouch[i] = new SpriteForTouch();
 			}
-			kapetSpriteForTouch[0].DrawSprite("karpet_raf.png", 180, 305, 290f,150f);
-			kapetSpriteForTouch[1].DrawSprite("waku_red.png", 180, 305, 290f,150f);
+			kapetSpriteForTouch[0].DrawSprite("karpet.png", 180, 305, 290f,150f);
+			kapetSpriteForTouch[1].DrawSprite("karpet_kakure.png", 180, 305, 290f,150f);
 			
 			foreach (SpriteForTouch temp in kapetSpriteForTouch) {
 				kapetList.Add(temp);
@@ -277,8 +292,8 @@ namespace PSMGameJamWinter2013
 			for(int i = 0; i < this.ikeSpriteNum; i++) {
 				ikeSpriteForTouch[i] = new SpriteForTouch();
 			}
-			ikeSpriteForTouch[0].DrawSprite("ike_raf.png", 450, 397,305f,144f);
-			ikeSpriteForTouch[1].DrawSprite("waku_red.png", 450, 397, 305f,144f);
+			ikeSpriteForTouch[0].DrawSprite("ike.png", 450, 397,305f,144f);
+			ikeSpriteForTouch[1].DrawSprite("ike_kakure.png", 450, 397, 305f,144f);
 			
 			foreach (SpriteForTouch temp in ikeSpriteForTouch) {
 				ikeList.Add(temp);
@@ -375,7 +390,7 @@ namespace PSMGameJamWinter2013
 						//後ろを通過した敵と絵を合わせる
 						Teki_tobira.SetVisible(Teki_soto[i].NowIndex);
 						Teki_soto[i].SetUnVisible();	//全部非表示
-						Teki_tobira.SetVisible(DOOR_OPEN);
+//						Teki_tobira.SetVisible(DOOR_OPEN);
 						doorOpen = true;	//ドアを開ける
 						doorOpenCount = 0;
 					}
@@ -391,8 +406,10 @@ namespace PSMGameJamWinter2013
 			}
 			
 			//四角ボタンはA
-			if(InputDevice.SquareButtonRepeat()
-			   || InputDevice.LeftKeyRepeat()){
+			if(InputDevice.SquareButtonRepeat() 
+			   && !InputDevice.CircleButtonRepeat()
+			   && !InputDevice.TriangleButtonRepeat()
+			   && !InputDevice.CrossButtonRepeat()){
 				if(!squareBtnOn)
 				{
 					this.landSe.Play();
@@ -405,8 +422,10 @@ namespace PSMGameJamWinter2013
 			}
 			
 			//三角ボタンはW
-			if(InputDevice.TriangleButtonRepeat()
-			   || InputDevice.UpKeyRepeat()){
+			if(!InputDevice.SquareButtonRepeat() 
+			   && !InputDevice.CircleButtonRepeat()
+			   && InputDevice.TriangleButtonRepeat()
+			   && !InputDevice.CrossButtonRepeat()){
 				if(!triangleBtnOn)
 				{
 					this.woodSe.Play();
@@ -420,8 +439,10 @@ namespace PSMGameJamWinter2013
 			}
 			
 			//バツボタンはS
-			if(InputDevice.CrossButtonRepeat()
-			   || InputDevice.DownKeyRepeat()){
+			if(!InputDevice.SquareButtonRepeat() 
+			   && !InputDevice.CircleButtonRepeat()
+			   && !InputDevice.TriangleButtonRepeat()
+			   && InputDevice.CrossButtonRepeat()){
 				if(!crossBtnOn)
 				{
 					this.waterSe.Play();
@@ -435,8 +456,10 @@ namespace PSMGameJamWinter2013
 			}
 			
 			//丸ボタンはD
-			if(InputDevice.CircleButtonRepeat()
-			   || InputDevice.RightKeyRepeat()){
+			if(!InputDevice.SquareButtonRepeat() 
+			   && InputDevice.CircleButtonRepeat()
+			   && !InputDevice.TriangleButtonRepeat()
+			   && !InputDevice.CrossButtonRepeat()){
 				if(!circleBtnOn)
 				{
 					this.fireSe.Play();
@@ -466,9 +489,9 @@ namespace PSMGameJamWinter2013
 				if(doorOpenCount > DOOR_OPEN_FRAME)
 				{
 					//△これが正しい処理
-					//Teki_tobira.SetVisible(DOOR_CLOSE);
+					Teki_tobira.SetVisible(DOOR_CLOSE);
 					//見た目上の仮処理
-					Teki_tobira.SetUnVisible();
+//					Teki_tobira.SetUnVisible();
 					doorOpenCount = 0;
 					doorOpen = false;
 				}
@@ -562,7 +585,7 @@ namespace PSMGameJamWinter2013
 		public override void Terminate(){
 			this.scene.RemoveAllChildren(true);//必要 terminateの最初に
 			scene = null;
-			background = null;
+			background1 = null;
 			Maou = null;
 			Audio.StopBgm();
 		}//Terminate
