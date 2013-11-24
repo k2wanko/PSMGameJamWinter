@@ -135,6 +135,9 @@
     <Content Include="resources\teki_ki_tobira.png" />
     <Content Include="resources\waku_blue.png" />
     <Content Include="resources\waku_red.png" />
+    <Content Include="resources\seikou.png" />
+    <Content Include="resources\shippai.png" />
+    <Content Include="resources\maou_ki.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />
