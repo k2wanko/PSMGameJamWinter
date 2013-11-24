@@ -119,6 +119,7 @@
     <Content Include="resources\background.png" />
     <Content Include="resources\wood.png" />
     <Content Include="resources\maou3.png" />
+    <Content Include="resources\taitoru.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />

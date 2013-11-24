@@ -27,7 +27,7 @@ namespace PSMGameJamWinter2013
 		}
 		
 		protected override void SetFirstScene() {
-			sceneClass = new MainScene();
+			sceneClass = new TitleScene();
 		}
 	}
 }
