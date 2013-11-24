@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using Sce.PlayStation.Core;
+using Sce.PlayStation.Core.Audio;
 using Sce.PlayStation.Core.Environment;
 using Sce.PlayStation.Core.Graphics;
 using Sce.PlayStation.Core.Input;
@@ -18,6 +19,17 @@ namespace PSMGameJamWinter2013
 {
 	public class MockScene : GameScene
 	{
+		//音
+		private SoundPlayer doorCloseSe;
+		private SoundPlayer doorOpenSe;
+		private SoundPlayer endBadSe;
+		private SoundPlayer endGoodSe;
+		private SoundPlayer fireSe;
+		private SoundPlayer landSe;
+		private SoundPlayer waterSe;
+		private SoundPlayer woodSe;
+		
+		
 		//敵のID
 		private static readonly byte ENEMY_ID_NONE = 255;
 		private static readonly byte ENEMY_ID_SANKAKU = 0;
@@ -130,7 +142,7 @@ namespace PSMGameJamWinter2013
 				kiSpriteForTouch[i] = new SpriteForTouch();
 			}
 			kiSpriteForTouch[0].DrawSprite("ki_raf.png", 450, 10,280f,340f);
-			kiSpriteForTouch[1].DrawSprite("waku_red.png", 450, 10,280f,340f);
+			kiSpriteForTouch[1].DrawSprite("maou_ki.png", 450, 10,280f,340f);
 			
 			foreach (SpriteForTouch temp in kiSpriteForTouch) {
 				kiList.Add(temp);
@@ -247,6 +259,22 @@ namespace PSMGameJamWinter2013
 			                       	false);
 			//画像のセットここまで
 			
+			
+			//効果音のセット
+			this.doorCloseSe = Audio.SetEffect("/Application/sound/door_close.wav");
+			this.doorOpenSe = Audio.SetEffect("/Application/sound/door_open.wav");
+			this.endBadSe = Audio.SetEffect("/Application/sound/end_bad.wav");
+			this.endGoodSe = Audio.SetEffect("/Application/sound/end_good.wav");
+			this.fireSe = Audio.SetEffect("/Application/sound/fire.wav");
+			this.landSe = Audio.SetEffect("/Application/sound/land.wav");
+			this.waterSe = Audio.SetEffect("/Application/sound/water.wav");
+			this.woodSe = Audio.SetEffect("/Application/sound/wood.wav");
+			
+			//Bgmのセット
+			Audio.SetBgm("/Application/sound/game_maoudamashii_6_dangeon07.mp3");
+			Audio.SetVolumeBgm(0.1f);
+			Audio.StartBgm();
+			
 			return scene;
 
 		}//Initialize()
@@ -324,32 +352,44 @@ namespace PSMGameJamWinter2013
 			if(InputDevice.SquareButtonRepeat()
 			   || InputDevice.LeftKeyRepeat()){
 				squareBtnOn = true;
+				this.Kapet.SetVisible(1);
+				this.landSe.Play();
 			} else {
 				squareBtnOn = false;
+				this.Kapet.SetVisible(0);
 			}
 			
 			//三角ボタンはW
 			if(InputDevice.TriangleButtonRepeat()
 			   || InputDevice.UpKeyRepeat()){
 				triangleBtnOn = true;
+				this.Ki.SetVisible(1);
+				this.woodSe.Play();
 			} else {
 				triangleBtnOn = false;
+				this.Ki.SetVisible(0);
 			}
 			
 			//バツボタンはS
 			if(InputDevice.CrossButtonRepeat()
 			   || InputDevice.DownKeyRepeat()){
 				crossBtnOn = true;
+				this.Ike.SetVisible(1);
+				this.waterSe.Play();
 			} else {
 				crossBtnOn = false;
+				this.Ike.SetVisible(0);
 			}
 			
 			//丸ボタンはD
 			if(InputDevice.CircleButtonRepeat()
 			   || InputDevice.RightKeyRepeat()){
 				circleBtnOn = true;
+				this.Danro.SetVisible(1);
+				this.fireSe.Play();
 			} else {
 				circleBtnOn = false;
+				this.Danro.SetVisible(0);
 			}
 			
 			// X keyはStart
