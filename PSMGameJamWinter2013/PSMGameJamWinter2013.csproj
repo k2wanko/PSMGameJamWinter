@@ -174,5 +174,7 @@
     <Compile Include="WaterEnemyEntity.cs" />
     <Compile Include="TextLabel.cs" />
     <Compile Include="MockScene.cs" />
+    <Compile Include="GameSuccessScene.cs" />
+    <Compile Include="GameLoosingScene.cs" />
   </ItemGroup>
 </Project>
