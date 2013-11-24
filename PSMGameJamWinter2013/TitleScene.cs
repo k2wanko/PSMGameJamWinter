@@ -55,7 +55,7 @@ namespace PSMGameJamWinter2013
 			                       	false);
 			background1.Sprite.Visible = false;
 			
-			background2.DrawSprite("none.png",
+			background2.DrawSprite("botan_setsumei.png",
 									0,
 									0,
 									960,
