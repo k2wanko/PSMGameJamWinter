@@ -154,6 +154,9 @@
     <Content Include="sound\se_maoudamashii_se_door03.mp3" />
     <Content Include="sound\water.wav" />
     <Content Include="sound\wood.wav" />
+    <Content Include="resources\teki_hikui.png" />
+    <Content Include="resources\teki_honoo.png" />
+    <Content Include="resources\teki_mizu.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />

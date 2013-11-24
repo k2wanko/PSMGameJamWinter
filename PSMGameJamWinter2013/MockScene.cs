@@ -148,9 +148,9 @@ namespace PSMGameJamWinter2013
 				
 				//各対応した敵キャラクターをロード
 				teki_kiSpriteForTouch[ENEMY_ID_MARU].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
-				teki_kiSpriteForTouch[ENEMY_ID_SANKAKU].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
-				teki_kiSpriteForTouch[ENEMY_ID_SIKAKU].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
-				teki_kiSpriteForTouch[ENEMY_ID_BATU].DrawSprite("teki_ki.png", -240 * (i + 1), 10, 240f, 240f);
+				teki_kiSpriteForTouch[ENEMY_ID_SANKAKU].DrawSprite("teki_hikui.png", -240 * (i + 1), 10, 240f, 240f);
+				teki_kiSpriteForTouch[ENEMY_ID_SIKAKU].DrawSprite("teki_mizu.png", -240 * (i + 1), 10, 240f, 240f);
+				teki_kiSpriteForTouch[ENEMY_ID_BATU].DrawSprite("teki_honoo.png", -240 * (i + 1), 10, 240f, 240f);
 				
 				foreach (SpriteForTouch temp in teki_kiSpriteForTouch) {
 					teki_kiList.Add(temp);
@@ -307,6 +307,7 @@ namespace PSMGameJamWinter2013
 			this.landSe = Audio.SetEffect("/Application/sound/land.wav");
 			this.waterSe = Audio.SetEffect("/Application/sound/water.wav");
 			this.woodSe = Audio.SetEffect("/Application/sound/wood.wav");
+			this.woodSe.Volume = 0.8f;
 			
 			//Bgmのセット
 			Audio.SetBgm("/Application/sound/game_maoudamashii_6_dangeon07.mp3");
@@ -360,10 +361,10 @@ namespace PSMGameJamWinter2013
 			
 			createEnemy();
 			
-			if (this.mockSceneTime % 60 == 0) {
+			if (this.mockSceneTime % 30 == 0) {
 				this.timeBar.Sprite.Quad.S.X -= 2;
 				if (this.timeBar.Sprite.Quad.S.X <= 0) {
-//					ChangeScene( () => {return new TitleScene();} );
+					ChangeScene( () => {return new GameSuccessScene();} );
 				}
 			}
 			
