@@ -4,7 +4,7 @@ namespace PSMGameJamWinter2013
 {
 	public class WaterEnemyEntity : EnemyEntity
 	{
-		public WaterEnemyEntity ()
+		public WaterEnemyEntity () : base()
 		{
 		}
 	}

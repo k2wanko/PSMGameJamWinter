@@ -117,6 +117,7 @@
     <Content Include="resources\maou.png" />
     <Content Include="resources\maou2.png" />
     <Content Include="resources\background.png" />
+    <Content Include="resources\wood.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />
@@ -135,5 +136,6 @@
     <Compile Include="WoodEnemyEntity.cs" />
     <Compile Include="GrandEnemyEntity.cs" />
     <Compile Include="WaterEnemyEntity.cs" />
+    <Compile Include="TextLabel.cs" />
   </ItemGroup>
 </Project>

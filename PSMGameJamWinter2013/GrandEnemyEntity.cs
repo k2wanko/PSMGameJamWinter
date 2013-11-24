@@ -4,8 +4,8 @@ namespace PSMGameJamWinter2013
 {
 	public class GrandEnemyEntity : EnemyEntity
 	{
-		public GrandEnemyEntity ()
-		{
+		public GrandEnemyEntity () : base()
+		{ 
 		}
 	}
 }

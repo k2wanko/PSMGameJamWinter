@@ -14,13 +14,23 @@ namespace PSMGameJamWinter2013
 	public class BaseSprite : SpriteUV
 	{
 		
-		Texture2D texture2d = null;
-		TextureInfo[] textureInfoArray = new TextureInfo[10];
+		public Texture2D texture2d = null;
+		public TextureInfo[] textureInfoArray = new TextureInfo[10];
 		int texture_num = 0;
 		
 		public BaseSprite ()
 		{
 			
+		}
+		
+		public BaseSprite (Texture2D t2) : base()
+		{
+			//base(t2);
+		}
+		
+		public BaseSprite (BaseSprite bs)
+		{
+			this.TextureInfo = bs.TextureInfo;
 		}
 		
 		public void setTexture(int i)

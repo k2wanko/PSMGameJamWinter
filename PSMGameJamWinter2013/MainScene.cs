@@ -22,7 +22,9 @@ namespace PSMGameJamWinter2013
 		public PlayerEntity player;
 		System.Timers.Timer timer = new System.Timers.Timer(10000);
 		
-		public EnemyEntity[] enemyArray = new EnemyEntity[4];
+		public EnemyEntity[] enemyArray = null;
+		
+		//public GameScene scene = scene;
 		
 		private bool isStart = false;
 		
@@ -35,6 +37,11 @@ namespace PSMGameJamWinter2013
 		{
 			
 		}
+		public TextLabel scoreLabel = null;
+		
+		public string scoreText = "Score: ";
+		
+		
 		public override Scene Initialize()
 		{
 			scene.Camera.SetViewFromViewport();
@@ -47,11 +54,19 @@ namespace PSMGameJamWinter2013
 			
 			player = new PlayerEntity();
 			
-			enemyArray[0] = new EnemyEntity(); 
+			scoreLabel = new TextLabel(scoreText + 0);
+			
+			//enemyArray[0] = new FireEnemyEntity(); 
+			//enemyArray[1] = new WaterEnemyEntity(); 
+			//enemyArray[2] = new GrandEnemyEntity(); 
+			//enemyArray[3] = new WoodEnemyEntity(); 
+			
+			
 			
 			
 			scene.AddChild(background);
 			scene.AddChild(player);
+			scene.AddChild(scoreLabel);
 
 			return scene;
 		}
@@ -60,6 +75,9 @@ namespace PSMGameJamWinter2013
 		{
 			isStart = true;
 			GameLog.DebugLog.Log("start");
+			
+			//spwan
+			spawnEnemy();
 			timer.Elapsed += new ElapsedEventHandler(spawnEnemy);
 			timer.Interval = 1000;
 			timer.Enabled = true;
@@ -67,37 +85,79 @@ namespace PSMGameJamWinter2013
 			
 		}
 		
-		public EnemyEntity[] enemyArray = new EnemyEntity[5];
+		public List<EnemyEntity> enemyList = new List<EnemyEntity>();
 		
-		public System.Collections.Generic.List<EnemyEntity> enemyList = new System.Collections.Generic.List<EnemyEntity>();
+		public void spawnEnemy(object source, ElapsedEventArgs tEvent){
+			int rand = (new System.Random()).Next(0, 3);
+			EnemyEntity e = new EnemyEntity();
+			Console.WriteLine(rand);
+			
+			//this.scene.AddChild();
+		}
 		
-		public void spawnEnemy(object source, ElapsedEventArgs tEvent)
+		public int max = 5;
+		private EnemyEntity enemyEnt = new EnemyEntity();
+		
+		public void spawnEnemy() // Update
 		{
 			//GameLog.DebugLog.Log("as" + enemyList.Count);
-			int rand = (new System.Random()).Next(0, 3);
+			int rand = (new System.Random()).Next(0, 4);
 			
 			
-			EnemyEntity e = new EnemyEntity();
-			int i = enemyList.Count;
-			Console.WriteLine("Yahoo " + i);
-			/*
-			if (0 < i){
-				
-				
-				scene.AddChild(e);
-				int j = i;
-				for(; 0 < j; j--){
-					//GameLog.DebugLog.Log("as" + j);
-					EnemyEntity ce = enemyList[j];
-				}
-				
-			}else {
-				enemyList.Add(e);
-				scene.AddChild(e);
+			EnemyEntity e = new EnemyEntity(enemyEnt);
+			//Console.WriteLine (rand);
+			e.setType(rand);
+			
+			//if(max < enemyList.Count) {
+			enemyList.Reverse();
+			enemyList.Add(e);
+			enemyList.Reverse();
+			//}
+			
+			if (max < enemyList.Count) {
+					enemyList.Remove(enemyList[enemyList.Count - 1]);
 			}
 			
-			Console.Write("Test");			
-			*/
+			int i = enemyList.Count;
+			foreach (EnemyEntity v in enemyList){
+				if (!v.Next()){
+					v.Visible = false;
+					//enemyList.RemoveAt( i );
+				}
+			}
+			//Console.WriteLine("Yahoo " + i);
+			
+			/*if (0 < i){
+				
+				for(int j = i; j > 0 ; j--){
+					
+					EnemyEntity tmp = enemyList[j - 1];
+					Console.WriteLine("i:"+i + " j:" + j + " " + tmp.pos);
+					tmp.Next();
+					if(tmp.pos > max){
+						tmp.Visible = false;
+						tmp = null;
+					}
+					/*if(i == j){
+						if(max > i){
+							enemyList.Add(e);
+							enemyList[j] = tmp;
+						} else {
+							tmp.Visible = false;
+							tmp = null;
+						}
+					}/
+					//if (max > i )
+					//if(j == 0 ) enemyList[0] = e;
+				}
+				
+			} else {
+				enemyList.Add(e);
+			}*/
+			//enemyList[0] = e;
+			scene.AddChild(e);
+			
+			/**/
 			/*
 			int i = 0;
 			for(i = 0; i < enemyArray.Length; i++)
@@ -123,6 +183,7 @@ namespace PSMGameJamWinter2013
 			return frame++ ;
 		}
 		
+		
 		public override void Update(){
 			float f = UpdateFrame();
 			
@@ -131,7 +192,33 @@ namespace PSMGameJamWinter2013
 				start ();
 			} else if(isStart) {// start
 				
-				player.Update(frame);
+				player.Update(f);
+				
+				if( (f % 60) == 0) {
+					spawnEnemy();
+					if(enemyList.Count >= 5)
+					{
+						EnemyEntity e = enemyList[3];
+						bool flag = false;
+						int b = 0;
+						switch(e.type){
+						case 0:
+							flag = InputDevice.CircleButtonRepeat();
+							break;
+						case 1:
+							flag = InputDevice.CrossButtonRepeat();
+							break;
+						case 2:
+							flag = InputDevice.SquareButtonRepeat();
+							break;
+						case 3:
+							flag = InputDevice.TriangleButtonRepeat();
+							break;
+						}
+						Console.WriteLine (flag);
+					}
+				}
+				
 				
 			}
 			
