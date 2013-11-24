@@ -124,6 +124,17 @@
     <Content Include="resources\maru.png" />
     <Content Include="resources\sankaku.png" />
     <Content Include="resources\shikaku.png" />
+    <Content Include="resources\bed_raf.png" />
+    <Content Include="resources\danro_raf.png" />
+    <Content Include="resources\gamen_rafu_2.png" />
+    <Content Include="resources\ike_raf.png" />
+    <Content Include="resources\kabe.png" />
+    <Content Include="resources\karpet_raf.png" />
+    <Content Include="resources\ki_raf.png" />
+    <Content Include="resources\teki_ki.png" />
+    <Content Include="resources\teki_ki_tobira.png" />
+    <Content Include="resources\waku_blue.png" />
+    <Content Include="resources\waku_red.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />
@@ -143,5 +154,6 @@
     <Compile Include="GrandEnemyEntity.cs" />
     <Compile Include="WaterEnemyEntity.cs" />
     <Compile Include="TextLabel.cs" />
+    <Compile Include="MockScene.cs" />
   </ItemGroup>
 </Project>
