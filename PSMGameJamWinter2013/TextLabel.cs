@@ -7,14 +7,29 @@ namespace PSMGameJamWinter2013
 	public class TextLabel : BaseSprite
 	{
 		
-		
+		//public Image img = null;
+		//public ImageColor rgb = null;
+		//public ImageSize size = null;
 		
 		public TextLabel (string text)
 		{
-			   //var width = Director.Instance.GL.Context.GetViewport().Width;
-			   //var height = Director.Instance.GL.Context.GetViewport().Height;
+			ImageColor rgb = new ImageColor(255,255,255,255);
+			ImageSize size = new ImageSize(200,100);
+			Image img = new Image(ImageMode.Rgba, size,
+			            rgb);
+			img.DrawText (text, 
+			              new ImageColor(255,255,255,255),
+			              new Font(FontAlias.System,120,FontStyle.Regular),
+			              new ImagePosition(300,200));
+			texture2d = new Texture2D(size.Width, size.Height, false, PixelFormat.Rgba);
 			
-			   //this.TextureInfo = ti;
+			texture2d.SetPixels(0,img.ToBuffer());
+			
+			img.Dispose();
+			
+			Sce.PlayStation.HighLevel.GameEngine2D.Base.TextureInfo ti = new Sce.PlayStation.HighLevel.GameEngine2D.Base.TextureInfo(texture2d);
+			
+			this.TextureInfo = ti;
 		}
 		
 		public void setText(string text) {
@@ -25,14 +40,14 @@ namespace PSMGameJamWinter2013
 			   img.DrawText("" + text, 
 			                new ImageColor(255,0,0,255),
 			                new Font(FontAlias.System,170,FontStyle.Regular),
-			                new ImagePosition(0,150));
+			                new ImagePosition(100,100));
 			  
 			   texture2d = new Texture2D(width,height,false,
 			                                     PixelFormat.Rgba);
-			   texture2d.SetPixels(0,img.ToBuffer());
-			   img.Dispose();
+				texture2d.SetPixels(0,img.ToBuffer());
+				img.Dispose();
 				Sce.PlayStation.HighLevel.GameEngine2D.Base.TextureInfo ti = new Sce.PlayStation.HighLevel.GameEngine2D.Base.TextureInfo(texture2d);
-			   this.TextureInfo = ti;
+				this.TextureInfo = ti;
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace PSMGameJamWinter2013
 		public PlayerEntity ()
 		{
 			
-			setTextureArray(new string[]{"maou.png", "maou2.png"});
+			setTextureArray(new string[]{"maou.png", "maou.png", "maou2.png", "maou3.png"});
 			Quad.S = new Vector2(180f,180f);
 			Position = defaultPos;
 			
@@ -29,18 +29,23 @@ namespace PSMGameJamWinter2013
 			if(InputDevice.CircleButtonRepeat()) {
 				isPush = true;
 				Position = new Vector2(defaultPos.X + move, defaultPos.Y);
+				setTexture(1);
 			} else if (InputDevice.CrossButtonRepeat()) {
 				isPush = true;
 				Position = new Vector2(defaultPos.X, defaultPos.Y - move);
+				setTexture(2);
 			} else if (InputDevice.SquareButtonRepeat()) {
 				isPush = true;
 				Position = new Vector2(defaultPos.X - move, defaultPos.Y);
+				setTexture(2);
 			} else if (InputDevice.TriangleButtonRepeat()) {
 				isPush = true;
 				Position = new Vector2(defaultPos.X, defaultPos.Y + move);
+				setTexture(3);
 			} else {
 				isPush = false;
 				Position = defaultPos;
+				setTexture(0);
 			}
 			/*
 			if(InputDevice.CircleButtonRepeat() && !isPush){

@@ -37,7 +37,9 @@ namespace PSMGameJamWinter2013
 		{
 			
 		}
-		public TextLabel scoreLabel = null;
+		//public TextLabel scoreLabel = null;
+		
+		public SpriteUV scoreLabel = null;
 		
 		public string scoreText = "Score: ";
 		
@@ -54,7 +56,7 @@ namespace PSMGameJamWinter2013
 			
 			player = new PlayerEntity();
 			
-			scoreLabel = new TextLabel(scoreText + 0);
+			scoreLabel = WriteString.DrawSprite(scoreText + score, 720, 450, 50, new ImageColor(255,255,255,255)); //new TextLabel(scoreText + 0);
 			
 			//enemyArray[0] = new FireEnemyEntity(); 
 			//enemyArray[1] = new WaterEnemyEntity(); 
@@ -66,6 +68,7 @@ namespace PSMGameJamWinter2013
 			
 			scene.AddChild(background);
 			scene.AddChild(player);
+			//Console.WriteLine(scoreLabel);
 			scene.AddChild(scoreLabel);
 
 			return scene;
@@ -214,6 +217,13 @@ namespace PSMGameJamWinter2013
 						case 3:
 							flag = InputDevice.TriangleButtonRepeat();
 							break;
+						}
+						if(flag){
+							//flag = false;
+							score += 10;
+							scoreLabel.Visible = false;
+							scoreLabel = WriteString.DrawSprite(scoreText + score, 720, 450, 50, new ImageColor(255,255,255,255));
+							scene.AddChild(scoreLabel);
 						}
 						Console.WriteLine (flag);
 					}
