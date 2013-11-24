@@ -120,6 +120,10 @@
     <Content Include="resources\wood.png" />
     <Content Include="resources\maou3.png" />
     <Content Include="resources\taitoru.png" />
+    <Content Include="resources\batten.png" />
+    <Content Include="resources\maru.png" />
+    <Content Include="resources\sankaku.png" />
+    <Content Include="resources\shikaku.png" />
   </ItemGroup>
   <ItemGroup>
     <PsmMetadata Include="app.xml" />
