@@ -53,10 +53,10 @@ namespace PSMGameJamWinter2013
 		private static readonly int SCORE_PULS = 10;
 		
 		//300フレームごとにレベルアップ
-		private static readonly int LEVELUP_FRAME = 80;
+		private static readonly int LEVELUP_FRAME = 90;
 		//1回で上がるスピード
-		private static readonly int LEVELUP_SPEED = 5;
-		private static readonly int LEVELUP_MAX = 150;	//速度の限界
+		private static readonly int LEVELUP_SPEED = 3;
+		private static readonly int LEVELUP_MAX = 15;	//速度の限界
 		
 		//出現するモンスターの種類が増えるタイミング
 		private static readonly int MONSTER_ADD_FRAME = 500;
@@ -91,7 +91,7 @@ namespace PSMGameJamWinter2013
 		private System.Timers.Timer timer = new System.Timers.Timer(100);//0/1秒に1回呼び出し
 		
 		//初期位置
-		private int createEnemyPos = 0;
+		private readonly int CREATE_ENEMY_POS = -200;
 		
 		//スコア
 		private int score = 0;
@@ -337,7 +337,7 @@ namespace PSMGameJamWinter2013
 					{
 						//Draw
 						Teki_soto[i].SetVisible(monster);
-						MoveSprite.SetPositonGridX(Teki_soto[i], createEnemyPos);
+						MoveSprite.SetPositonGridX(Teki_soto[i], CREATE_ENEMY_POS);
 						for(int j = 0; j < this.tekiNum; j++)
 						{
 							//出現位置でぶつかるようなら表示しない
